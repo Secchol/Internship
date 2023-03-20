@@ -24,9 +24,9 @@ public final class QuickSort {
 
     /**
      * The quickSort method sorts the given array from the startIndex to the endIndex in ascending order.
-     * @param array      the array to be sorted
-     * @param startIndex the start index of the subarray
-     * @param endIndex   the end index of the subarray
+     * Params: array - the array to be sorted
+     *         startIndex - the start index of the subarray
+     *         endIndex - the end index of the subarray
      */
     private static void quickSort(int[] array, int startIndex, int endIndex) {
         if (startIndex < endIndex) {
@@ -41,10 +41,10 @@ public final class QuickSort {
      * The findPivotIndex sorts the given array from startIndex to endIndex and returns the
      * index of the array pivot.
      *
-     * @param array      the array to be sorted
-     * @param startIndex the start index of the subarray
-     * @param endIndex   the end index of the subarray
-     * @return the index of the array pivot
+     * Params: array - the array to be sorted
+     *         startIndex - the start index of the subarray
+     *         endIndex - the end index of the subarray
+     * Returns: the index of the array pivot
      */
     private static int findPivotIndex(int[] array, int startIndex, int endIndex) {
         int pivot = array[endIndex];
