@@ -52,7 +52,6 @@ public class HangmanModel {
     /**
      * Makes guess with a given character. If hidden word contains the character it is added to the guessed letters else
      * the user's guesses are lowered by one.
-     *
      * @param character the user's guess character
      * @return whether the user's guess was correct
      */
@@ -68,7 +67,6 @@ public class HangmanModel {
     /**
      * Returns the masked word. The masked word shows the users guessed letters and underscore for the letters that
      * have not been guessed yet.
-     *
      * @return the masked word
      */
     public String getMaskedWord() {
@@ -89,7 +87,6 @@ public class HangmanModel {
     /**
      * Checks whether the game is over. The game ends when the user has run out of guesses or has guessed all
      * the letters of the hidden word.
-     *
      * @return a boolean indicating whether the game is over
      */
     public boolean isGameOver() {

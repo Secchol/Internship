@@ -10,7 +10,6 @@ public class HangmanView {
 
     /**
      * sets the hangman model value
-     *
      * @param model the hangman model
      */
     public HangmanView(HangmanModel model) {
@@ -41,7 +40,6 @@ public class HangmanView {
 
     /**
      * Gets the user's guess character
-     *
      * @return the user's guess character
      */
     public Character promptGuess() {
@@ -59,7 +57,6 @@ public class HangmanView {
 
     /**
      * Displays message of the user has guessed the word or if he has run out of attempts.
-     *
      * @param guessedWord whether the user has guessed the word before running out of attempts
      */
     public void endStatus(boolean guessedWord) {
