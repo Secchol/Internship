@@ -5,14 +5,16 @@ package com.ontotext.javacourse.intro.gcd;
  * of two integers and the Least common multiple(LCM) of two integers.
  */
 public final class GCDandLCM {
-    private GCDandLCM() {}
+    private GCDandLCM() throws IllegalAccessException {
+        throw new IllegalAccessException("GCDandLCM class is not meant to be instantiated");
+    }
 
     /**
-     * The findGCD method returns the Greatest common divisor(GCD) of two integers
+     * Returns the Greatest common divisor(GCD) of two integers
      * Example:
      * GCDandLCM.findGCD(5,10)  Result: 5
      * Params: a, b both integers - the numbers of which to find the GCD
-     * Result: the greatest common divisor of a and b
+     * Returns: the greatest common divisor of a and b
      */
     public static int findGCD(int firstNumber, int secondNumber) {
         int smallerNum = Math.min(firstNumber, secondNumber);
@@ -34,7 +36,7 @@ public final class GCDandLCM {
      * Example:
      * GCDandLCM.findLCM(20,30)  Result: 60
      * Params: a, b both integers - the numbers of which to find the LCM
-     * Result: the least common multiple of a and b
+     * Returns: the least common multiple of a and b
      * Throws: IllegalArgumentException- if either a or b is zero
      */
     public static int findLCM(int firstNumber, int secondNumber) {

@@ -2,7 +2,6 @@ package com.ontotext.javacourse.intro.arrayprocessing;
 
 import org.junit.jupiter.api.Test;
 
-import java.awt.dnd.InvalidDnDOperationException;
 import java.security.InvalidParameterException;
 
 import static org.junit.Assert.assertEquals;
@@ -33,18 +32,46 @@ class ArrayProcessingTest {
     }
 
     @Test
+    void sumWithGivenIndexIntervalWorksWithCorrectInput() {
+        assertEquals(ArrayProcessing.sum(ARRAY, 1, 4), -20);
+    }
+
+    @Test
     void printWorksWithCorrectInput() {
-        //assert that correct input is displayed
+        assertEquals(ArrayProcessing.print(ARRAY), "3 -6 1 -15 26 5");
+    }
+
+    @Test
+    void printWorksWithEmptyArrayInput() {
+        assertEquals(ArrayProcessing.print(EMPTY_ARRAY), "");
     }
 
     @Test
     void findLargestSubarraySumWorksWithCorrectInput() {
-        //assert that correct input is displayed
+        assertEquals(ArrayProcessing.findLargestSubarraySum(ARRAY), 31);
     }
 
     @Test
-    void findLargestSubarraySumThrowsExceptionWithEmptyArray() {
+    void findLargestSubarraySumThrowsExceptionWithEmptyArrayInput() {
         assertThrows(IllegalArgumentException.class, () -> ArrayProcessing.findLargestSubarraySum(EMPTY_ARRAY));
+    }
+
+    @Test
+    void swapElementsWorksWithCorrectInput() {
+        int[] array = new int[]{1, 2, 3, 4, 5};
+        ArrayProcessing.swapElements(array, 0, 4);
+        assertEquals(array[0], 5);
+        assertEquals(array[4], 1);
+    }
+
+    @Test
+    void swapElementsThrowsExceptionWithInvalidIndexInput() {
+        assertThrows(IllegalArgumentException.class, () -> ArrayProcessing.swapElements(ARRAY, -1, 2));
+    }
+
+    @Test
+    void swapElementsThrowsExceptionWithEmptyArrayInput() {
+        assertThrows(IllegalArgumentException.class, () -> ArrayProcessing.swapElements(EMPTY_ARRAY, 1, 2));
     }
 }
 

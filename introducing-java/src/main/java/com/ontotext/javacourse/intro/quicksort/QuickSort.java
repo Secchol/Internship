@@ -1,7 +1,6 @@
 package com.ontotext.javacourse.intro.quicksort;
 
-import java.util.Arrays;
-import java.util.logging.Logger;
+import com.ontotext.javacourse.intro.arrayprocessing.ArrayProcessing;
 
 /**
  * The QuickSort class provides a single method sort which sorts a given integer array in ascending order and
@@ -9,7 +8,9 @@ import java.util.logging.Logger;
  */
 public final class QuickSort {
 
-    private static final Logger LOGGER = Logger.getLogger(QuickSort.class.getName());
+    private QuickSort() throws IllegalAccessException {
+        throw new IllegalAccessException("QuickSort class is not meant to be instantiated");
+    }
 
     /**
      * The sort method sorts the given method(by calling the quickSort method) and displays the sorted method to the screen
@@ -17,9 +18,9 @@ public final class QuickSort {
      * QuickSort.sort(new int[] {5, 2, 3, 1, 4})  Prints: {1, 2, 3, 4, 5}
      * Params: int[] array - the array to be sorted
      */
-    public static void sort(int[] array) {
+    public static String sort(int[] array) {
         QuickSort.quickSort(array, 0, array.length - 1);
-        LOGGER.info(Arrays.toString(array));
+        return ArrayProcessing.print(array);
     }
 
     /**
@@ -40,7 +41,7 @@ public final class QuickSort {
     /**
      * The findPivotIndex sorts the given array from startIndex to endIndex and returns the
      * index of the array pivot.
-     *
+     * <p>
      * Params: array - the array to be sorted
      *         startIndex - the start index of the subarray
      *         endIndex - the end index of the subarray
@@ -53,16 +54,10 @@ public final class QuickSort {
         for (int j = startIndex; j < endIndex; j++) {
             if (array[j] <= pivot) {
                 i++;
-
-                int swapTemp = array[i];
-                array[i] = array[j];
-                array[j] = swapTemp;
+                ArrayProcessing.swapElements(array, i, j);
             }
         }
-
-        int swapTemp = array[i + 1];
-        array[i + 1] = array[endIndex];
-        array[endIndex] = swapTemp;
+        ArrayProcessing.swapElements(array, i + 1, endIndex);
         return i + 1;
     }
 }
