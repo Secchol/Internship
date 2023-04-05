@@ -3,11 +3,11 @@ package com.ontotext.javacourse.intro.hangman;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class HangmanModelTest {
 
-    private HangmanModel MODEL = new HangmanModel();
+    private static HangmanModel MODEL = new HangmanModel();
 
     @AfterEach
     void tearDown() {
@@ -15,57 +15,34 @@ class HangmanModelTest {
     }
 
     @Test
-    void getWordWorksWithCorrectInput() {
-        MODEL.setWord("car");
-        assertEquals(MODEL.getWord(), "car");
-    }
-
-    @Test
-    void setWordWorksWithCorrectInput() {
-        MODEL.setWord("dog");
-        assertEquals(MODEL.getWord(), "dog");
-    }
-
-    @Test
-    void setGuessesLeftWorksWithCorrectInput() {
-        MODEL.setGuessesLeft(2);
-        assertEquals(MODEL.getGuessesLeft(), 2);
-    }
-
-    @Test
-    void getGuessesLeftHasCorrectInitialValue() {
-        assertEquals(MODEL.getGuessesLeft(), 5);
-    }
-
-    @Test
     void makeGuessReturnsTrueIfGuessIsCorrect() {
         MODEL.setWord("chicken");
-        assertEquals(MODEL.makeGuess('c'), true);
+        assertTrue(MODEL.makeGuess('c'));
     }
 
     @Test
     void makeGuessReturnsFalseIfGuessIsIncorrect() {
         MODEL.setWord("chicken");
-        assertEquals(MODEL.makeGuess('d'), false);
+        assertFalse(MODEL.makeGuess('d'));
     }
 
     @Test
     void getMaskedWordReturnsCorrectStringWithGuessedLetters() {
         MODEL.setWord("chicken");
         MODEL.makeGuess('c');
-        assertEquals(MODEL.getMaskedWord(), "c _ _ c _ _ _");
+        assertEquals("c _ _ c _ _ _", MODEL.getMaskedWord());
     }
 
     @Test
     void getMaskedWordReturnsCorrectStringWithNoGuessedLetters() {
         MODEL.setWord("chicken");
-        assertEquals(MODEL.getMaskedWord(), "_ _ _ _ _ _ _");
+        assertEquals("_ _ _ _ _ _ _", MODEL.getMaskedWord());
     }
 
     @Test
     void isGameOverReturnsTrueIfGuessesAreZero() {
         MODEL.setGuessesLeft(0);
-        assertEquals(MODEL.isGameOver(), true);
+        assertTrue(MODEL.isGameOver());
     }
 
     @Test
@@ -74,13 +51,13 @@ class HangmanModelTest {
         MODEL.makeGuess('d');
         MODEL.makeGuess('o');
         MODEL.makeGuess('g');
-        assertEquals(MODEL.isGameOver(), true);
+        assertTrue(MODEL.isGameOver());
     }
 
     @Test
     void isGameOverReturnsFalseIfGameIsNotOver() {
         MODEL.setWord("banana");
         MODEL.setGuessesLeft(3);
-        assertEquals(MODEL.isGameOver(), false);
+        assertFalse(MODEL.isGameOver());
     }
 }

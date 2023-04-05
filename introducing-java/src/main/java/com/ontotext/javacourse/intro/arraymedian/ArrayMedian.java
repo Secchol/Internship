@@ -16,8 +16,8 @@ public final class ArrayMedian {
      * </ul>
      * Example:
      * ArrayMedian.findArrayMedian(1, 2, 3, 4, 5)  Result: 4 (element with index 3)
-     * Params: sequence of integers - the numbers to find the median of
-     * Result: the position of the median when counting from one
+     * @param numbers - sequence of integers to find the median of
+     * @return the position of the median when counting from one
      */
     public static int findArrayMedian(int... numbers) {
         if (numbers.length == 0) {
@@ -26,7 +26,7 @@ public final class ArrayMedian {
         int medianIndex = 0;
         int closestSumDifference = Integer.MAX_VALUE;
         int leftSum = 0;
-        int rightSum = ArrayProcessing.sum(numbers, medianIndex, numbers.length);
+        int rightSum = ArrayProcessing.sum(numbers);
 
         for (int i = 1; i < numbers.length - 1; i++) {
             leftSum += numbers[i - 1];

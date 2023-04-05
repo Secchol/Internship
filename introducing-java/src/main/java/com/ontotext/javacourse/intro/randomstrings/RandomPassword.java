@@ -11,6 +11,7 @@ public final class RandomPassword {
 
     /**
      * Generates a random password with a given length that contains only digits, lowercase and uppercase letters
+     *
      * @param passwordLength the length of the password to generated
      * @return the generated password
      */
@@ -18,7 +19,7 @@ public final class RandomPassword {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwqyz0123456789";
         StringBuilder randomPassword = new StringBuilder(passwordLength);
         for (int i = 1; i <= passwordLength; i++) {
-            int randomIndex = Math.abs(characters.length() - 1 - Integer.parseInt(String.valueOf(Math.random()).substring(2, 4)));
+            int randomIndex = (int) (Math.random() * characters.length());
             Character randomChar = characters.charAt(randomIndex);
             randomPassword.append(randomChar);
         }

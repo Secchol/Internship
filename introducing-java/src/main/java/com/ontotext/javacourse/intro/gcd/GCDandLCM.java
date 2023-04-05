@@ -13,8 +13,9 @@ public final class GCDandLCM {
      * Returns the Greatest common divisor(GCD) of two integers
      * Example:
      * GCDandLCM.findGCD(5,10)  Result: 5
-     * Params: a, b both integers - the numbers of which to find the GCD
-     * Returns: the greatest common divisor of a and b
+     * @param firstNumber  the first number
+     * @param secondNumber the second number
+     * @return gcd of firstNumber and secondNumber
      */
     public static int findGCD(int firstNumber, int secondNumber) {
         int smallerNum = Math.min(firstNumber, secondNumber);
@@ -35,9 +36,10 @@ public final class GCDandLCM {
      * The findLCM method depends on the findGCD method and returns the least common multiple of two integers
      * Example:
      * GCDandLCM.findLCM(20,30)  Result: 60
-     * Params: a, b both integers - the numbers of which to find the LCM
-     * Returns: the least common multiple of a and b
-     * Throws: IllegalArgumentException- if either a or b is zero
+     * @param firstNumber  the first number
+     * @param secondNumber the second number
+     * @return gcd of firstNumber and secondNumber
+     * @throws IllegalArgumentException if either a or b is zero
      */
     public static int findLCM(int firstNumber, int secondNumber) {
         if (firstNumber == 0 || secondNumber == 0) {

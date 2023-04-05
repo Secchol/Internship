@@ -20,8 +20,9 @@ public final class ArrayProcessing {
      * Example:
      * int[] array = new int[]{-3, 4, 6, -10, 13};
      * ArrayProcessing.getMinElementIndex(array)  Result: 3
-     * Params: int[] array - the array in which to find the min element index
-     * Result: the index of the element with the minimum value
+     *
+     * @param array the array in which to find the min element index
+     * @return the index of the element with the minimum value
      */
     public static int getMinElementIndex(int[] array) {
         if (array.length == 0) {
@@ -42,9 +43,10 @@ public final class ArrayProcessing {
      * Example:
      * int[] array = new int[]{-3, 4, 6, -10, 13};
      * ArrayProcessing.sum(array)  Result: 10
-     * Params: int[] array - the array to find the sum of
-     * Result: the sum of all elements in a given array
-     * Throws: InvalidParameterException - if the given array is empty(length==0)
+     *
+     * @param array the array to find the sum of
+     * @return the sum of all elements in a given array
+     * @throws InvalidParameterException if the given array is empty(length==0)
      */
     public static int sum(int[] array) {
         if (array.length == 0) {
@@ -61,10 +63,11 @@ public final class ArrayProcessing {
     /**
      * Returns the sum of the elements of a subarray in a given array with given startIndex(inclusive)
      * and endIndex(exclusive)
-     * Params: startIndex - the subarray start index(inclusive)
-     *         endIndex - the subarray end index(exclusive)
-     *         array - the array of which subarray to find the sum of
-     * Result: the sum of the subarray elements
+     *
+     * @param startIndex the subarray start index(inclusive)
+     * @param endIndex   the subarray end index(exclusive)
+     * @param array      the array of which subarray to find the sum of
+     * @return the sum of the subarray elements
      */
     public static int sum(int[] array, int startIndex, int endIndex) {
         int sum = 0;
@@ -80,8 +83,9 @@ public final class ArrayProcessing {
      * Example:
      * int[] array = new int[]{-3, 4, 6, -10, 13};
      * ArrayProcessing.sum(array)  Result: "-3, 4, 6, -10, 13"
-     * Params: int[] array - the array to be printed
-     * Returns: all the elements in the given array separated by " "
+     *
+     * @param array the array to be printed
+     * @return all the elements in the given array separated by " "
      */
     public static String print(int[] array) {
         StringBuilder arrayElements = new StringBuilder();
@@ -97,9 +101,10 @@ public final class ArrayProcessing {
      * Example:
      * int[] array = new int[]{-3, 4, 6, -10, 13, 10};
      * ArrayProcessing.findLargestSubarraySum(array)  Result: "23"
-     * Params: int[] array - the array of which to find the contiguous subarray with the largest sum
-     * Returns: the largest sum of a contiguous subarray
-     * Throws: InvalidParameterException - if the given array is empty(length == 0)
+     *
+     * @param array the array of which to find the contiguous subarray with the largest sum
+     * @return the largest sum of a contiguous subarray
+     * @throws InvalidParameterException if the given array is empty(length == 0)
      */
     public static int findLargestSubarraySum(int[] array) {
         if (array.length == 0) {
@@ -122,11 +127,12 @@ public final class ArrayProcessing {
 
     /**
      * Swaps two elements in a given array.
-     * @param array the array in which to swap two elements
-     * @param firstElementIndex the index of the first element
+     *
+     * @param array              the array in which to swap two elements
+     * @param firstElementIndex  the index of the first element
      * @param secondElementIndex the index of the second element
      * @throws IllegalArgumentException if the given index is invalid(less than zero) or the
-     * given array is empty(length == 0)
+     *                                  given array is empty(length == 0)
      */
     public static void swapElements(int[] array, int firstElementIndex, int secondElementIndex) {
         if (firstElementIndex < 0 || secondElementIndex < 0) {

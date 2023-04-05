@@ -4,26 +4,26 @@ import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ArrayProcessingTest {
-    private final int[] ARRAY = new int[]{3, -6, 1, -15, 26, 5};
-    private final int[] EMPTY_ARRAY = new int[]{};
+    private static final int[] ARRAY = new int[]{3, -6, 1, -15, 26, 5};
+    private static final int[] EMPTY_ARRAY = new int[]{};
 
     @Test
     void getMinElementIndexWorksWithCorrectInput() {
-        assertEquals(ArrayProcessing.getMinElementIndex(ARRAY), 3);
+        assertEquals(3, ArrayProcessing.getMinElementIndex(ARRAY));
     }
 
     @Test
     void getMinElementIndexReturnsCorrectOutputWhenGivenEmptyArray() {
-        assertEquals(ArrayProcessing.getMinElementIndex(EMPTY_ARRAY), -1);
+        assertEquals(-1, ArrayProcessing.getMinElementIndex(EMPTY_ARRAY));
     }
 
     @Test
     void sumWorksWithCorrectInput() {
-        assertEquals(ArrayProcessing.sum(ARRAY), 14);
+        assertEquals(14, ArrayProcessing.sum(ARRAY));
     }
 
     @Test
@@ -38,17 +38,17 @@ class ArrayProcessingTest {
 
     @Test
     void printWorksWithCorrectInput() {
-        assertEquals(ArrayProcessing.print(ARRAY), "3 -6 1 -15 26 5");
+        assertEquals("3 -6 1 -15 26 5", ArrayProcessing.print(ARRAY));
     }
 
     @Test
     void printWorksWithEmptyArrayInput() {
-        assertEquals(ArrayProcessing.print(EMPTY_ARRAY), "");
+        assertEquals("", ArrayProcessing.print(EMPTY_ARRAY));
     }
 
     @Test
     void findLargestSubarraySumWorksWithCorrectInput() {
-        assertEquals(ArrayProcessing.findLargestSubarraySum(ARRAY), 31);
+        assertEquals(31, ArrayProcessing.findLargestSubarraySum(ARRAY));
     }
 
     @Test
@@ -60,8 +60,8 @@ class ArrayProcessingTest {
     void swapElementsWorksWithCorrectInput() {
         int[] array = new int[]{1, 2, 3, 4, 5};
         ArrayProcessing.swapElements(array, 0, 4);
-        assertEquals(array[0], 5);
-        assertEquals(array[4], 1);
+        assertEquals(5, array[0]);
+        assertEquals(1, array[4]);
     }
 
     @Test

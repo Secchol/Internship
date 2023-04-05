@@ -13,10 +13,11 @@ public final class QuickSort {
     }
 
     /**
-     * The sort method sorts the given method(by calling the quickSort method) and displays the sorted method to the screen
+     * Sorts the given method(by calling the quickSort method) and displays the sorted method to the screen
      * Example:
      * QuickSort.sort(new int[] {5, 2, 3, 1, 4})  Prints: {1, 2, 3, 4, 5}
-     * Params: int[] array - the array to be sorted
+     *
+     * @param array the array to be sorted
      */
     public static String sort(int[] array) {
         QuickSort.quickSort(array, 0, array.length - 1);
@@ -24,10 +25,11 @@ public final class QuickSort {
     }
 
     /**
-     * The quickSort method sorts the given array from the startIndex to the endIndex in ascending order.
-     * Params: array - the array to be sorted
-     *         startIndex - the start index of the subarray
-     *         endIndex - the end index of the subarray
+     * Sorts the given array from the startIndex to the endIndex in ascending order.
+     *
+     * @param array      the array to be sorted
+     * @param startIndex the start index of the subarray
+     * @param endIndex   the end index of the subarray
      */
     private static void quickSort(int[] array, int startIndex, int endIndex) {
         if (startIndex < endIndex) {
@@ -39,13 +41,13 @@ public final class QuickSort {
     }
 
     /**
-     * The findPivotIndex sorts the given array from startIndex to endIndex and returns the
+     * Sorts the given array from startIndex to endIndex and returns the
      * index of the array pivot.
-     * <p>
-     * Params: array - the array to be sorted
-     *         startIndex - the start index of the subarray
-     *         endIndex - the end index of the subarray
-     * Returns: the index of the array pivot
+     *
+     * @param array      the array to be sorted
+     * @param startIndex the start index of the subarray
+     * @param endIndex   the end index of the subarray
+     * @return the index of the array pivot
      */
     private static int findPivotIndex(int[] array, int startIndex, int endIndex) {
         int pivot = array[endIndex];

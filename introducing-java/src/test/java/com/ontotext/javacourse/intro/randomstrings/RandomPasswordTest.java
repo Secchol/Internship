@@ -2,15 +2,16 @@ package com.ontotext.javacourse.intro.randomstrings;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class RandomPasswordTest {
 
-    private final String VALIDCHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwqyz0123456789";
+    private static final String VALIDCHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwqyz0123456789";
 
     @Test
     void generateRandomPasswordHasCorrectLength() {
-        assertEquals(RandomPassword.generateRandomPassword(20).length(), 20);
+        assertEquals(20, RandomPassword.generateRandomPassword(20).length());
     }
 
     @Test
@@ -20,13 +21,14 @@ public class RandomPasswordTest {
         for (char character : generatedPassword.toCharArray()) {
             if (VALIDCHARACTERS.indexOf(character) == -1) {
                 containsInvalidCharacters = true;
+                break;
             }
         }
-        assertEquals(containsInvalidCharacters, false);
+        assertFalse(containsInvalidCharacters);
     }
 
     @Test
     void generateRandomPasswordWorksWithZeroInput() {
-        assertEquals(RandomPassword.generateRandomPassword(0), "");
+        assertEquals("", RandomPassword.generateRandomPassword(0));
     }
 }

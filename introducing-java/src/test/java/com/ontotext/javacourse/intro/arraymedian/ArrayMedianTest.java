@@ -15,4 +15,14 @@ class ArrayMedianTest {
     void findArrayMedianWorksWithEmptyArrayInput() {
         assertEquals(ArrayMedian.findArrayMedian(), -1);
     }
+
+    @Test
+    void findArrayMedianWorksWithArrayWithLengthOneInput() {
+        assertEquals(ArrayMedian.findArrayMedian(10), 1);
+    }
+
+    @Test
+    void findArrayMedianWorksWithNegativeNumberArray() {
+        assertEquals(ArrayMedian.findArrayMedian(-10, -20, -4, -3, -5, -6), 3);
+    }
 }

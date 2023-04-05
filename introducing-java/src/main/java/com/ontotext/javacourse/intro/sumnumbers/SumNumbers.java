@@ -13,6 +13,7 @@ public final class SumNumbers {
     /**
      * Sums two numbers given as strings that can have unlimited length. The sum method is used for summing
      * large numbers because it implements the algorithm for summing.
+     *
      * @param firstNumber  the first number to sum
      * @param secondNumber the second number to sum
      * @return sum of firstNumber and secondNumber as a string
@@ -21,6 +22,8 @@ public final class SumNumbers {
         if (firstNumber.isEmpty() || secondNumber.isEmpty()) {
             throw new InvalidParameterException("Input number cannot be empty");
         }
+        firstNumber = removeLeadingZeroes(firstNumber);
+        secondNumber = removeLeadingZeroes(secondNumber);
         StringBuilder sum = new StringBuilder();
         String shorterNumber = firstNumber.length() < secondNumber.length() ? firstNumber : secondNumber;
         firstNumber = new StringBuilder(firstNumber).reverse().toString();
@@ -35,7 +38,7 @@ public final class SumNumbers {
             sum.append(resultDigit);
         }
 
-        /*Adds remaining digits of larger number*/
+        //Adds remaining digits of larger number
         String largerNumber = firstNumber.length() > secondNumber.length() ? firstNumber : secondNumber;
         for (int i = shorterNumber.length(); i < largerNumber.length(); i++) {
             int leftoverSum = Integer.parseInt(String.valueOf(largerNumber.charAt(i))) + remainder;
@@ -44,11 +47,25 @@ public final class SumNumbers {
             sum.append(resultDigit);
         }
 
-        /*Adds remaining remainder if there is such*/
+        //Adds remaining remainder if there is such
         if (remainder > 0) {
             sum.append(remainder);
         }
         return sum.reverse().toString();
+    }
+
+    private static String removeLeadingZeroes(String number) {
+        if (number.charAt(0) == '0') {
+            int endIndex = 0;
+            for (int i = 0; i < number.length(); i++) {
+                if (number.charAt(i) != '0') {
+                    endIndex = i;
+                    break;
+                }
+            }
+            number = endIndex == 0 ? "0" : number.substring(endIndex, number.length());
+        }
+        return number;
     }
 
 }

@@ -6,28 +6,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GCDandLCMTest {
+    @Test
     void findGCDMethodWorksWithCorrectInput() {
-        assertEquals(GCDandLCM.findGCD(12, 36), 12);
+        assertEquals(12, GCDandLCM.findGCD(12, 36));
     }
 
     @Test
     void findGCDMethodWorksWithZeroAsParam() {
-        assertEquals(GCDandLCM.findGCD(10, 0), 10);
+        assertEquals(10, GCDandLCM.findGCD(10, 0));
     }
 
     @Test
     void findGCDMethodWorksWithBothParametersAsZero() {
-        assertEquals(GCDandLCM.findGCD(0, 0), 0);
+        assertEquals(0, GCDandLCM.findGCD(0, 0));
     }
 
     @Test
     void findGCDMethodWorksWithNegativeInput() {
-        assertEquals(GCDandLCM.findGCD(-10, -20), -10);
+        assertEquals(-10, GCDandLCM.findGCD(-10, -20));
     }
 
     @Test
     void findLCMMethodWorksWithCorrectInput() {
-        assertEquals(GCDandLCM.findLCM(20, 30), 60);
+        assertEquals(60, GCDandLCM.findLCM(20, 30));
     }
 
     @Test
