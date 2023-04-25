@@ -11,8 +11,7 @@ public final class GCDandLCM {
 
     /**
      * Returns the Greatest common divisor(GCD) of two integers
-     * Example:
-     * GCDandLCM.findGCD(5,10)  Result: 5
+     *
      * @param firstNumber  the first number
      * @param secondNumber the second number
      * @return gcd of firstNumber and secondNumber
@@ -34,8 +33,7 @@ public final class GCDandLCM {
 
     /**
      * The findLCM method depends on the findGCD method and returns the least common multiple of two integers
-     * Example:
-     * GCDandLCM.findLCM(20,30)  Result: 60
+     *
      * @param firstNumber  the first number
      * @param secondNumber the second number
      * @return gcd of firstNumber and secondNumber

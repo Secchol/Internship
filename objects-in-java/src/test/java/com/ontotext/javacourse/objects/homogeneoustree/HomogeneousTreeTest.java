@@ -5,16 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class HomogeneousTreeTest {
 
-    private static HomogeneousTree<Integer> TREE = new HomogeneousTree<Integer>();
+    private static HomogeneousTree<Integer> TREE = new HomogeneousTree<>();
 
     @BeforeEach
     void setUp() {
-        TREE = new HomogeneousTree<Integer>();
+        TREE = new HomogeneousTree<>();
         Node<Integer> first = new Node<>(12);
         Node<Integer> second = new Node<>(10);
         Node<Integer> third = new Node<>(16);
@@ -33,27 +32,27 @@ class HomogeneousTreeTest {
 
     @Test
     void insertCreatesRootIfTreeHasNoElements() {
-        HomogeneousTree<Integer> emptyTree = new HomogeneousTree<Integer>();
-        Node<Integer> node = new Node<Integer>(10);
+        HomogeneousTree<Integer> emptyTree = new HomogeneousTree<>();
+        Node<Integer> node = new Node<>(10);
         emptyTree.insert(node);
         assertEquals(emptyTree.search(node), node);
     }
 
     @Test
     void insertCreatesNewNodeInTree() {
-        Node<Integer> node = new Node<Integer>(8);
+        Node<Integer> node = new Node<>(8);
         TREE.insert(node);
         assertEquals(TREE.search(node), node);
     }
 
     @Test
     void insertThrowsExceptionIfElementIsAlreadyPresentInTheTree() {
-        assertThrows(InvalidParameterException.class, () -> TREE.insert(new Node<Integer>(18)));
+        assertThrows(InvalidParameterException.class, () -> TREE.insert(new Node<>(18)));
     }
 
     @Test
     void searchReturnsNullIfElementIsNotInTheTree() {
-        assertEquals(null, TREE.search(new Node<Integer>(100)));
+        assertNull(TREE.search(new Node<>(100)));
     }
 
     @Test

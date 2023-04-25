@@ -1,9 +1,9 @@
 package com.ontotext.javacourse.objects.homogeneoustree;
 
 public class Node<T> {
-    public T value;
-    public Node<T> leftChild;
-    public Node<T> rightChild;
+    private T value;
+    private Node<T> leftChild;
+    private Node<T> rightChild;
 
     public Node(T value) {
         setValue(value);

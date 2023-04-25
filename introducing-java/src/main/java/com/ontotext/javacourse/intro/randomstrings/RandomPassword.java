@@ -10,7 +10,7 @@ public final class RandomPassword {
     }
 
     /**
-     * Generates a random password with a given length that contains only digits, lowercase and uppercase letters
+     * Generates a random password with a given length that contains only digits, lowercase and uppercase letters.
      *
      * @param passwordLength the length of the password to generated
      * @return the generated password

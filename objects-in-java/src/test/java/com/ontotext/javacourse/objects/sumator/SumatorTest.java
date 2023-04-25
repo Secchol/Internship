@@ -1,4 +1,4 @@
-package com.ontotest.javacourse.objects.sumator;
+package com.ontotext.javacourse.objects.sumator;
 
 import org.junit.jupiter.api.Test;
 

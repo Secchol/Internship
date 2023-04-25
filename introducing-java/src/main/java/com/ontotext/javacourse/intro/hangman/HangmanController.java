@@ -4,40 +4,23 @@ public class HangmanController {
     private HangmanModel model;
     private HangmanView view;
 
-    /**
-     * Sets the hangman model and hangman view to the given input
-     * @param model hangman model
-     * @param view hangman view
-     */
     public HangmanController(HangmanModel model, HangmanView view) {
         setModel(model);
         setView(view);
     }
 
-    /**
-     * @return the hangman model
-     */
     public HangmanModel getModel() {
         return this.model;
     }
 
-    /**
-     * @param model the hangman model
-     */
     public void setModel(HangmanModel model) {
         this.model = model;
     }
 
-    /**
-     * @return the hangman view
-     */
     public HangmanView getView() {
         return this.view;
     }
 
-    /**
-     * @param view the hangman view
-     */
     public void setView(HangmanView view) {
         this.view = view;
     }

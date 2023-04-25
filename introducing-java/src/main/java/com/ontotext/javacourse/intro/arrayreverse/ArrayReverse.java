@@ -12,8 +12,6 @@ public final class ArrayReverse {
 
     /**
      * Reverses a given integer array
-     * Example:
-     * ArrayReverse.reverse(new int[] {1, 2, 3, 4, 5})  Result: {5, 4, 3, 2, 1}
      * @param array the array to be reversed
      */
     public static void reverse(int[] array) {

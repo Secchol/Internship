@@ -17,6 +17,7 @@ public final class SumNumbers {
      * @param firstNumber  the first number to sum
      * @param secondNumber the second number to sum
      * @return sum of firstNumber and secondNumber as a string
+     * @throws InvalidParameterException if either of the given numbers is empty string
      */
     public static String sum(String firstNumber, String secondNumber) {
         if (firstNumber.isEmpty() || secondNumber.isEmpty()) {
@@ -63,7 +64,7 @@ public final class SumNumbers {
                     break;
                 }
             }
-            number = endIndex == 0 ? "0" : number.substring(endIndex, number.length());
+            number = endIndex == 0 ? "0" : number.substring(endIndex);
         }
         return number;
     }

@@ -9,13 +9,16 @@ import com.ontotext.javacourse.intro.arrayprocessing.ArrayProcessing;
  */
 public final class ArrayMedian {
 
+    private ArrayMedian() throws IllegalAccessException {
+        throw new IllegalAccessException("ArrayMedian class is not meant to be instantiated");
+    }
+
     /**
      * Returns the position of the median of a given sequence of integers when counting from one. Special cases:
      * <ul>
      *     <li> if the input sequence of integers has a length of zero, then the result is -1</li>
      * </ul>
-     * Example:
-     * ArrayMedian.findArrayMedian(1, 2, 3, 4, 5)  Result: 4 (element with index 3)
+     *
      * @param numbers - sequence of integers to find the median of
      * @return the position of the median when counting from one
      */

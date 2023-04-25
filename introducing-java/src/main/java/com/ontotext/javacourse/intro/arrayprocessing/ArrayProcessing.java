@@ -17,9 +17,6 @@ public final class ArrayProcessing {
      * <ul>
      *     <li>if array is empty(length==0), then the result is -1</li>
      * </ul>
-     * Example:
-     * int[] array = new int[]{-3, 4, 6, -10, 13};
-     * ArrayProcessing.getMinElementIndex(array)  Result: 3
      *
      * @param array the array in which to find the min element index
      * @return the index of the element with the minimum value
@@ -40,9 +37,6 @@ public final class ArrayProcessing {
 
     /**
      * Sums all elements in a given array.
-     * Example:
-     * int[] array = new int[]{-3, 4, 6, -10, 13};
-     * ArrayProcessing.sum(array)  Result: 10
      *
      * @param array the array to find the sum of
      * @return the sum of all elements in a given array
@@ -62,7 +56,7 @@ public final class ArrayProcessing {
 
     /**
      * Returns the sum of the elements of a subarray in a given array with given startIndex(inclusive)
-     * and endIndex(exclusive)
+     * and endIndex(exclusive).
      *
      * @param startIndex the subarray start index(inclusive)
      * @param endIndex   the subarray end index(exclusive)
@@ -80,9 +74,6 @@ public final class ArrayProcessing {
 
     /**
      * Returns all the elements in a given array separated by " ".
-     * Example:
-     * int[] array = new int[]{-3, 4, 6, -10, 13};
-     * ArrayProcessing.sum(array)  Result: "-3, 4, 6, -10, 13"
      *
      * @param array the array to be printed
      * @return all the elements in the given array separated by " "
@@ -98,9 +89,6 @@ public final class ArrayProcessing {
 
     /**
      * Finds the contiguous subarray with the largest sum and returns the sum.
-     * Example:
-     * int[] array = new int[]{-3, 4, 6, -10, 13, 10};
-     * ArrayProcessing.findLargestSubarraySum(array)  Result: "23"
      *
      * @param array the array of which to find the contiguous subarray with the largest sum
      * @return the largest sum of a contiguous subarray

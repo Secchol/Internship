@@ -4,28 +4,18 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class HangmanView {
-    private final Scanner SCANNER = new Scanner(System.in);
-    private final Logger LOGGER = Logger.getLogger(HangmanView.class.getName());
+    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Logger LOGGER = Logger.getLogger(HangmanView.class.getName());
     private HangmanModel model;
 
-    /**
-     * sets the hangman model value
-     * @param model the hangman model
-     */
     public HangmanView(HangmanModel model) {
         setModel(model);
     }
 
-    /**
-     * @return the hangman model
-     */
     public HangmanModel getModel() {
         return this.model;
     }
 
-    /**
-     * @param model the hangman model
-     */
     public void setModel(HangmanModel model) {
         this.model = model;
     }
@@ -46,7 +36,7 @@ public class HangmanView {
         LOGGER.info("Guess a letter: ");
         String guess = SCANNER.nextLine();
         while (true) {
-            if (guess.length() > 1 || guess.length() == 0) {
+            if (guess.length() != 1) {
                 LOGGER.info("Please enter a single letter!");
                 guess = SCANNER.nextLine();
             } else {

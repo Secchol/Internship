@@ -14,8 +14,6 @@ public final class QuickSort {
 
     /**
      * Sorts the given method(by calling the quickSort method) and displays the sorted method to the screen
-     * Example:
-     * QuickSort.sort(new int[] {5, 2, 3, 1, 4})  Prints: {1, 2, 3, 4, 5}
      *
      * @param array the array to be sorted
      */

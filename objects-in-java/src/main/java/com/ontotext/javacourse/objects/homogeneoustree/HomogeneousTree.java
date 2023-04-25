@@ -35,10 +35,14 @@ public class HomogeneousTree<T extends Comparable<T>> {
         if (root == null) {
             return element;
         }
-        if (element.value.compareTo(root.value) < 0) {
-            root.leftChild = insert(root.getLeftChild(), element);
-        } else if (element.value.compareTo(root.value) > 0) {
-            root.rightChild = insert(root.getRightChild(), element);
+        if (element.getValue().compareTo(root.getValue()) < 0) {
+            Node<T> leftChild;
+            leftChild = insert(root.getLeftChild(), element);
+            root.setLeftChild(leftChild);
+        } else if (element.getValue().compareTo(root.getValue()) > 0) {
+            Node<T> rightChild;
+            rightChild = insert(root.getRightChild(), element);
+            root.setRightChild(rightChild);
         }
         return root;
     }
@@ -83,7 +87,7 @@ public class HomogeneousTree<T extends Comparable<T>> {
         String emptySpace = StringUtils.repeat(" ", indent);
         result.append(emptySpace);
         result.append(root.getValue());
-        result.append("\r\n");
+        result.append(System.lineSeparator());
 
         if (root.getRightChild() != null) {
             result.append(printInOrder(root.getRightChild(), indent + 4));

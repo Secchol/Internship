@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class RandomPasswordTest {
 
-    private static final String VALIDCHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwqyz0123456789";
+    private static final String VALID_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwqyz0123456789";
 
     @Test
     void generateRandomPasswordHasCorrectLength() {
@@ -19,7 +19,7 @@ public class RandomPasswordTest {
         String generatedPassword = RandomPassword.generateRandomPassword(20);
         boolean containsInvalidCharacters = false;
         for (char character : generatedPassword.toCharArray()) {
-            if (VALIDCHARACTERS.indexOf(character) == -1) {
+            if (VALID_CHARACTERS.indexOf(character) == -1) {
                 containsInvalidCharacters = true;
                 break;
             }
