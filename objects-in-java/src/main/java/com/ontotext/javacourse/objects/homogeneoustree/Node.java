@@ -1,5 +1,11 @@
 package com.ontotext.javacourse.objects.homogeneoustree;
 
+/**
+ * The Node class defines a node. Each node has a value of a specified type and points to
+ * two other nodes leftChild and right child.
+ *
+ * @param <T>
+ */
 public class Node<T> {
     private T value;
     private Node<T> leftChild;

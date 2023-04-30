@@ -5,6 +5,12 @@ import org.apache.commons.lang.StringUtils;
 import java.security.InvalidParameterException;
 import java.util.logging.Logger;
 
+/**
+ * The HomogenousTree class defines an unbalanced binary tree with elements of a specified type. This tree has
+ * methods for inserting new elements, searching for an element in the tree and printing all the tree elements.
+ *
+ * @param <T>
+ */
 public class HomogeneousTree<T extends Comparable<T>> {
 
     private static final Logger LOGGER = Logger.getLogger(HomogeneousTree.class.getName());

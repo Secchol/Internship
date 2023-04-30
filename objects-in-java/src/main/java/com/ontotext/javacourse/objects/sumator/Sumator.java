@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.InvalidParameterException;
 
+/**
+ * The Sumator class contains methods for summing elements of type integer, double, string, BigInteger and BigDecimal.
+ */
 public class Sumator {
 
     private Sumator() throws IllegalAccessException {

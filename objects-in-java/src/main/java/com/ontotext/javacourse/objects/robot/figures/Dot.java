@@ -1,8 +1,29 @@
 package com.ontotext.javacourse.objects.robot.figures;
 
-public class Dot extends Figure {
+import com.ontotext.javacourse.objects.robot.OntoRobot;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-    public Dot(int x, int y) {
-        super(x, y);
+/**
+ * The Dot class defines a dot which is meant to be drawn. It has x and y coordinates which indicate
+ * where the dot will be drawn.
+ */
+@Getter
+@Setter
+@AllArgsConstructor
+public class Dot extends Figure {
+    private int x;
+    private int y;
+
+    /**
+     * Draws dot using given OntoRobot robot.
+     *
+     * @param robot the robot which to draw the figure with
+     */
+    @Override
+    public void draw(OntoRobot robot) {
+        robot.moveTo(getX(), getY());
+        robot.putBeeper();
     }
 }
