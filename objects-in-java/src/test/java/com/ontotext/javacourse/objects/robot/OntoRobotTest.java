@@ -1,6 +1,5 @@
 package com.ontotext.javacourse.objects.robot;
 
-import com.ontotext.javacourse.objects.robot.figures.Dot;
 import kareltherobot.Directions;
 import kareltherobot.World;
 import org.junit.jupiter.api.BeforeEach;

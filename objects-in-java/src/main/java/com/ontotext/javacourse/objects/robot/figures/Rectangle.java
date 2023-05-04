@@ -1,6 +1,5 @@
 package com.ontotext.javacourse.objects.robot.figures;
 
-import com.ontotext.javacourse.objects.robot.OntoRobot;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,13 +17,4 @@ public class Rectangle extends Square {
         this.width = width;
     }
 
-    /**
-     * Draws a rectangle using a given OntoRobot robot.
-     *
-     * @param robot the robot which to draw the figure with
-     */
-    @Override
-    public void draw(OntoRobot robot) {
-        super.drawRectangle(getX(), getY(), getLength(), getWidth(), robot);
-    }
 }

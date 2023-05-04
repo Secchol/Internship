@@ -1,6 +1,5 @@
 package com.ontotext.javacourse.objects.robot.figures;
 
-import com.ontotext.javacourse.objects.robot.OntoRobot;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,15 +14,4 @@ import lombok.Setter;
 public class Dot extends Figure {
     private int x;
     private int y;
-
-    /**
-     * Draws dot using given OntoRobot robot.
-     *
-     * @param robot the robot which to draw the figure with
-     */
-    @Override
-    public void draw(OntoRobot robot) {
-        robot.moveTo(getX(), getY());
-        robot.putBeeper();
-    }
 }

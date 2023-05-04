@@ -1,6 +1,5 @@
 package com.ontotext.javacourse.objects.robot.figures;
 
-import com.ontotext.javacourse.objects.robot.Drawable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class Figure implements Drawable {
+public abstract class Figure {
 
 }

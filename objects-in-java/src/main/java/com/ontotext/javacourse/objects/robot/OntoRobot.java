@@ -1,5 +1,7 @@
 package com.ontotext.javacourse.objects.robot;
 
+import com.ontotext.javacourse.objects.robot.drawers.FigureDrawer;
+import com.ontotext.javacourse.objects.robot.figures.Figure;
 import kareltherobot.Directions;
 import kareltherobot.UrRobot;
 import kareltherobot.World;
@@ -30,8 +32,9 @@ public class OntoRobot extends UrRobot {
     /**
      * Draws given robot figure using beepers.
      */
-    public void draw(Drawable figure) {
-        figure.draw(this);
+    public void draw(Figure figure) {
+        FigureDrawer<Figure> drawer = new FigureDrawer<>();
+        drawer.draw(figure, this);
     }
 
     /**
