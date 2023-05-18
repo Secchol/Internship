@@ -13,6 +13,13 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <repositories>
+        <repository>
+            <id>com.github.jtsmithiisd.KJR</id>
+            <name>com.github.jtsmithiisd.KarelJRobot</name>
+            <url>https://github.com/jtsmithiisd/KJR/blob/master/KarelJRobot.jar?raw=true</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -35,6 +42,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.26</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jtsmithiisd.KJR</groupId>
+            <artifactId>kareltherobot</artifactId>
+            <version>1.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

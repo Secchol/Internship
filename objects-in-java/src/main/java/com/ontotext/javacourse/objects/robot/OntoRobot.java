@@ -4,7 +4,6 @@ import com.ontotext.javacourse.objects.robot.drawers.FigureDrawer;
 import com.ontotext.javacourse.objects.robot.figures.Figure;
 import kareltherobot.Directions;
 import kareltherobot.UrRobot;
-import kareltherobot.World;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -80,7 +79,7 @@ public class OntoRobot extends UrRobot {
      */
     public void moveTo(int street, int avenue) {
         if (street <= 0 || avenue <= 0) {
-            World.signalError("Street and avenue must be larger than zero!", "OutOfBounds");
+
             return;
         }
         if (this.street > street) {

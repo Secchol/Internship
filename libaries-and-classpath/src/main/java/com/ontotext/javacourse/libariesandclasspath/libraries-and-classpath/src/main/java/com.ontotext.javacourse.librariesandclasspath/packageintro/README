@@ -1,0 +1,4 @@
+Task 1: Create executable JAR from Hangman task.
+Using cmd:
+jar cfe Hangman.jar Runner.class *
+java-jar Hangman.jar - executes jar file
