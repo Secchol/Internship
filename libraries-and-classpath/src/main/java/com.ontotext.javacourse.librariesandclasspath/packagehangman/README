@@ -1,2 +1,0 @@
-Task 2: Package introduction-java as JAR:
-run mvn package(install)
