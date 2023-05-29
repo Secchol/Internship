@@ -3,135 +3,135 @@ package com.ontotext.javacourse.intro.arrayprocessing;
 import java.security.InvalidParameterException;
 
 /**
- * The ArrayProcessing class provides the implementation of four methods
- * that take an array of integers as input and perform different actions based on its elements
+ * The ArrayProcessing class provides the implementation of four methods that take an array of
+ * integers as input and perform different actions based on its elements.
  */
 public final class ArrayProcessing {
 
-    private ArrayProcessing() throws IllegalAccessException {
-        throw new IllegalAccessException("ArrayProcessing class is not meant to be instantiated");
+  private ArrayProcessing() throws IllegalAccessException {
+    throw new IllegalAccessException("ArrayProcessing class is not meant to be instantiated");
+  }
+
+  /**
+   * Returns the index of the element with the minimum value of a given array. Special cases:
+   *
+   * <ul>
+   *   <li>if array is empty(length==0), then the result is -1
+   * </ul>
+   *
+   * @param array the array in which to find the min element index
+   * @return the index of the element with the minimum value
+   */
+  public static int getMinElementIndex(int[] array) {
+    if (array.length == 0) {
+      return -1;
     }
 
-    /**
-     * Returns the index of the element with the minimum value of a given array. Special cases:
-     * <ul>
-     *     <li>if array is empty(length==0), then the result is -1</li>
-     * </ul>
-     *
-     * @param array the array in which to find the min element index
-     * @return the index of the element with the minimum value
-     */
-    public static int getMinElementIndex(int[] array) {
-        if (array.length == 0) {
-            return -1;
-        }
+    int minElementIndex = 0;
+    for (int i = 0; i < array.length; i++) {
+      if (array[i] < array[minElementIndex]) {
+        minElementIndex = i;
+      }
+    }
+    return minElementIndex;
+  }
 
-        int minElementIndex = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < array[minElementIndex]) {
-                minElementIndex = i;
-            }
-        }
-        return minElementIndex;
+  /**
+   * Sums all elements in a given array.
+   *
+   * @param array the array to find the sum of
+   * @return the sum of all elements in a given array
+   * @throws InvalidParameterException if the given array is empty(length==0)
+   */
+  public static int sum(int[] array) {
+    if (array.length == 0) {
+      throw new InvalidParameterException("Array length cannot be zero");
     }
 
-    /**
-     * Sums all elements in a given array.
-     *
-     * @param array the array to find the sum of
-     * @return the sum of all elements in a given array
-     * @throws InvalidParameterException if the given array is empty(length==0)
-     */
-    public static int sum(int[] array) {
-        if (array.length == 0) {
-            throw new InvalidParameterException("Array length cannot be zero");
-        }
+    int sum = 0;
+    for (int j : array) {
+      sum += j;
+    }
+    return sum;
+  }
 
-        int sum = 0;
-        for (int j : array) {
-            sum += j;
-        }
-        return sum;
+  /**
+   * Returns the sum of the elements of a subarray in a given array with given startIndex(inclusive)
+   * and endIndex(exclusive).
+   *
+   * @param startIndex the subarray start index(inclusive)
+   * @param endIndex the subarray end index(exclusive)
+   * @param array the array of which subarray to find the sum of
+   * @return the sum of the subarray elements
+   */
+  public static int sum(int[] array, int startIndex, int endIndex) {
+    int sum = 0;
+
+    for (int i = startIndex; i < endIndex; i++) {
+      sum += array[i];
+    }
+    return sum;
+  }
+
+  /**
+   * Returns all the elements in a given array separated by " ".
+   *
+   * @param array the array to be printed
+   * @return all the elements in the given array separated by " "
+   */
+  public static String print(int[] array) {
+    StringBuilder arrayElements = new StringBuilder();
+    for (int element : array) {
+      arrayElements.append(element);
+      arrayElements.append(" ");
+    }
+    return arrayElements.toString().trim();
+  }
+
+  /**
+   * Finds the contiguous subarray with the largest sum and returns the sum.
+   *
+   * @param array the array of which to find the contiguous subarray with the largest sum
+   * @return the largest sum of a contiguous subarray
+   * @throws InvalidParameterException if the given array is empty(length == 0)
+   */
+  public static int findLargestSubarraySum(int[] array) {
+    if (array.length == 0) {
+      throw new InvalidParameterException("Array length cannot be zero");
     }
 
-    /**
-     * Returns the sum of the elements of a subarray in a given array with given startIndex(inclusive)
-     * and endIndex(exclusive).
-     *
-     * @param startIndex the subarray start index(inclusive)
-     * @param endIndex   the subarray end index(exclusive)
-     * @param array      the array of which subarray to find the sum of
-     * @return the sum of the subarray elements
-     */
-    public static int sum(int[] array, int startIndex, int endIndex) {
-        int sum = 0;
-
-        for (int i = startIndex; i < endIndex; i++) {
-            sum += array[i];
-        }
-        return sum;
+    int maxSum = Integer.MIN_VALUE;
+    int currentSubarraySum = 0;
+    for (int i = 0; i <= array.length - 1; i++) {
+      currentSubarraySum += array[i];
+      if (currentSubarraySum > maxSum) {
+        maxSum = currentSubarraySum;
+      }
+      if (currentSubarraySum < 0) {
+        currentSubarraySum = 0;
+      }
     }
+    return maxSum;
+  }
 
-    /**
-     * Returns all the elements in a given array separated by " ".
-     *
-     * @param array the array to be printed
-     * @return all the elements in the given array separated by " "
-     */
-    public static String print(int[] array) {
-        StringBuilder arrayElements = new StringBuilder();
-        for (int element : array) {
-            arrayElements.append(element);
-            arrayElements.append(" ");
-        }
-        return arrayElements.toString().trim();
+  /**
+   * Swaps two elements in a given array.
+   *
+   * @param array the array in which to swap two elements
+   * @param firstElementIndex the index of the first element
+   * @param secondElementIndex the index of the second element
+   * @throws IllegalArgumentException if the given index is invalid(less than zero) or the given
+   *     array is empty(length == 0)
+   */
+  public static void swapElements(int[] array, int firstElementIndex, int secondElementIndex) {
+    if (firstElementIndex < 0 || secondElementIndex < 0) {
+      throw new IllegalArgumentException("Invalid index");
     }
-
-    /**
-     * Finds the contiguous subarray with the largest sum and returns the sum.
-     *
-     * @param array the array of which to find the contiguous subarray with the largest sum
-     * @return the largest sum of a contiguous subarray
-     * @throws InvalidParameterException if the given array is empty(length == 0)
-     */
-    public static int findLargestSubarraySum(int[] array) {
-        if (array.length == 0) {
-            throw new InvalidParameterException("Array length cannot be zero");
-        }
-
-        int maxSum = Integer.MIN_VALUE;
-        int currentSubarraySum = 0;
-        for (int i = 0; i <= array.length - 1; i++) {
-            currentSubarraySum += array[i];
-            if (currentSubarraySum > maxSum) {
-                maxSum = currentSubarraySum;
-            }
-            if (currentSubarraySum < 0) {
-                currentSubarraySum = 0;
-            }
-        }
-        return maxSum;
+    if (array.length == 0) {
+      throw new IllegalArgumentException("Array cannot be empty");
     }
-
-    /**
-     * Swaps two elements in a given array.
-     *
-     * @param array              the array in which to swap two elements
-     * @param firstElementIndex  the index of the first element
-     * @param secondElementIndex the index of the second element
-     * @throws IllegalArgumentException if the given index is invalid(less than zero) or the
-     *                                  given array is empty(length == 0)
-     */
-    public static void swapElements(int[] array, int firstElementIndex, int secondElementIndex) {
-        if (firstElementIndex < 0 || secondElementIndex < 0) {
-            throw new IllegalArgumentException("Invalid index");
-        }
-        if (array.length == 0) {
-            throw new IllegalArgumentException("Array cannot be empty");
-        }
-        int swapTemp = array[firstElementIndex];
-        array[firstElementIndex] = array[secondElementIndex];
-        array[secondElementIndex] = swapTemp;
-    }
+    int swapTemp = array[firstElementIndex];
+    array[firstElementIndex] = array[secondElementIndex];
+    array[secondElementIndex] = swapTemp;
+  }
 }
-

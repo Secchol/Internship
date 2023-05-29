@@ -12,6 +12,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Dot extends Figure {
-    private int x;
-    private int y;
+  private int x;
+  private int y;
 }
