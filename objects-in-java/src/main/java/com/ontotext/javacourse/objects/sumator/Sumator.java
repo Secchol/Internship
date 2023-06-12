@@ -1,13 +1,19 @@
 package com.ontotext.javacourse.objects.sumator;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.InvalidParameterException;
+import java.util.logging.Logger;
 
 /**
- * The Sumator class contains methods for summing elements of type integer, double, string, BigInteger and BigDecimal.
+ * The Sumator class contains methods for summing elements of type integer, double, string,
+ * BigInteger and BigDecimal.
  */
 public class Sumator {
+
+    private static final Logger LOGGER = Logger.getLogger(Sumator.class.getName());
 
     private Sumator() throws IllegalAccessException {
         throw new IllegalAccessException("Sumator class is not meant to be instantiated");
@@ -36,8 +42,8 @@ public class Sumator {
     }
 
     /**
-     * Sums two numbers given as string. The method can sum large numbers because it implements the algorithm
-     * for summing used by people.
+     * Sums two numbers given as string. The method can sum large numbers because it implements the
+     * algorithm for summing used by people.
      *
      * @param firstNumber  first number to sum
      * @param secondNumber second number to sum
@@ -51,7 +57,6 @@ public class Sumator {
         BigInteger secondValue = new BigInteger(secondNumber);
         return sum(firstValue, secondValue).toString();
     }
-
 
     /**
      * Sums two BigInteger objects.
@@ -73,5 +78,18 @@ public class Sumator {
      */
     public static BigDecimal sum(BigDecimal firstNumber, BigDecimal secondNumber) {
         return firstNumber.add(secondNumber);
+    }
+
+    public static void validateInput(String firstNumber, String secondNumber) {
+        try {
+            if (!StringUtils.isNumeric(firstNumber) || !StringUtils.isNumeric(secondNumber)) {
+                throw new InvalidParameterException("The given number is non numeric.");
+            } else {
+                Sumator.sum(firstNumber, secondNumber);
+            }
+        } catch (Exception exception) {
+            LOGGER.info(exception.getMessage());
+        }
+
     }
 }

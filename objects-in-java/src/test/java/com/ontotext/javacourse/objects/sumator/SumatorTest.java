@@ -93,4 +93,5 @@ class SumatorTest {
         BigDecimal secondNumber = new BigDecimal("122.2389948923864");
         assertEquals(expectedSum, Sumator.sum(firstNumber, secondNumber));
     }
+
 }
