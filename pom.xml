@@ -21,6 +21,8 @@
     <modules>
         <module>introducing-java</module>
         <module>objects-in-java</module>
+        <module>exceptions</module>
+        <module>reflection-annotations-regex</module>
     </modules>
     <dependencyManagement>
         <dependencies>

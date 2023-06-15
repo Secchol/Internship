@@ -5,7 +5,7 @@ package ontotext.javacourse.exceptions.elementslist.exceptions;
  */
 public class ListIsFullException extends RuntimeException {
 
-    public ListIsFullException(String message) {
-        super(message);
-    }
+  public ListIsFullException(String message) {
+    super(message);
+  }
 }
