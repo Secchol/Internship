@@ -57,13 +57,19 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.28</version>
-                <scope>compile</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.github.jtsmithiisd.KJR</groupId>
                 <artifactId>kareltherobot</artifactId>
                 <version>1.0</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <type>maven-plugin</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -78,7 +84,7 @@
                     <configuration>
                         <annotationProcessorPaths>
                             <path>
-                                <groupId>org.project-lombok</groupId>
+                                <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
                                 <version>1.18.28</version>
                             </path>
