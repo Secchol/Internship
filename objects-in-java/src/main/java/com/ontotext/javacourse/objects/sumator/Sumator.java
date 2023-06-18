@@ -49,9 +49,8 @@ public final class Sumator {
    * @return sum of the firstNumber and secondNumber as string
    */
   public static String sum(String firstNumber, String secondNumber) {
-    if (firstNumber.equals("") || secondNumber.equals("")) {
-      throw new InvalidParameterException("String number cannot be empty");
-    }
+
+    validateInput(firstNumber, secondNumber);
     BigInteger firstValue = new BigInteger(firstNumber);
     BigInteger secondValue = new BigInteger(secondNumber);
     return sum(firstValue, secondValue).toString();
@@ -84,17 +83,14 @@ public final class Sumator {
    *
    * @param firstNumber the first number to sum
    * @param secondNumber the second number to sum
-   * @throws InvalidParameterException if one of the numbers is non numeric
+   * @throws InvalidParameterException if one of the numbers is non-numeric
    */
   public static void validateInput(String firstNumber, String secondNumber) {
-    try {
-      if (!StringUtils.isNumeric(firstNumber) || !StringUtils.isNumeric(secondNumber)) {
-        throw new InvalidParameterException("The given number is non numeric.");
-      } else {
-        Sumator.sum(firstNumber, secondNumber);
-      }
-    } catch (Exception exception) {
-      LOGGER.info(exception.getMessage());
+    if (!StringUtils.isNumeric(firstNumber)
+        || firstNumber.equals("")
+        || !StringUtils.isNumeric(secondNumber)
+        || secondNumber.equals("")) {
+      throw new InvalidParameterException("The given number is non numeric.");
     }
   }
 }

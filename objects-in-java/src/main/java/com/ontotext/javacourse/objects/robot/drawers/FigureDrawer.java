@@ -12,36 +12,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FigureDrawer<T extends Figure> {
 
-    /**
-     * Draws a given figure using OntoRobot robot.
-     *
-     * @param figure the figure to draw
-     * @param robot  the robot which to draw the figure with
-     */
-    public void draw(T figure, OntoRobot robot) {
-        Drawer drawer = getDrawer(figure);
-        if (drawer == null) {
-            throw new NullPointerException("The given figure is not drawable!");
-        }
-        drawer.draw(figure, robot);
+  /**
+   * Draws a given figure using OntoRobot robot.
+   *
+   * @param figure the figure to draw
+   * @param robot the robot which to draw the figure with
+   */
+  public void draw(T figure, OntoRobot robot) {
+    Drawer drawer = getDrawer(figure);
+    if (drawer == null) {
+      throw new NullPointerException("The given figure is not drawable!");
     }
+    drawer.draw(figure, robot);
+  }
 
-    /**
-     * Returns the specific drawer for the given figure.
-     *
-     * @param figure the figure which to get the drawer of
-     * @return the specific figure drawer
-     */
-    private Drawer getDrawer(T figure) {
-        if (figure instanceof Rectangle) {
-            return new RectangleDrawer();
-        } else if (figure instanceof Square) {
-            return new SquareDrawer();
-        } else if (figure instanceof Line) {
-            return new LineDrawer();
-        } else if (figure instanceof Dot) {
-            return new DotDrawer();
-        }
-        return null;
+  /**
+   * Returns the specific drawer for the given figure.
+   *
+   * @param figure the figure which to get the drawer of
+   * @return the specific figure drawer
+   */
+  private Drawer getDrawer(T figure) {
+    if (figure instanceof Rectangle) {
+      return new RectangleDrawer();
+    } else if (figure instanceof Square) {
+      return new SquareDrawer();
+    } else if (figure instanceof Line) {
+      return new LineDrawer();
+    } else if (figure instanceof Dot) {
+      return new DotDrawer();
     }
+    return null;
+  }
 }

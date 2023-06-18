@@ -51,8 +51,13 @@ class SumatorTest {
   }
 
   @Test
-  void sumStringsWorksThrowsExceptionWithEmptyStringInput() {
+  void sumStringsThrowsExceptionWithEmptyStringInput() {
     assertThrows(InvalidParameterException.class, () -> Sumator.sum("", "123"));
+  }
+
+  @Test
+  void sumStringsThrowsExceptionWithNonNumericInput() {
+    assertThrows(InvalidParameterException.class, () -> Sumator.sum("$asd23", "123"));
   }
 
   @Test

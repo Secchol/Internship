@@ -23,10 +23,9 @@ public class ElementsList {
   }
 
   /**
-   * Adds new element to elementList.
+   * Adds new element to elementList. Throws ListIsFullException if the elementsList is full.
    *
    * @param element the element to add
-   * @throws ListIsFullException if the elementsList is full
    */
   public void add(Object element) {
     if (elements.length == getCount()) {
@@ -38,9 +37,7 @@ public class ElementsList {
   }
 
   /**
-   * Removes element from elementsList.
-   *
-   * @throws ListIsEmptyException if the list is empty
+   * Removes element from elementsList. Throws ListIsEmptyException if the elementsList is empty.
    */
   public void remove() {
     if (getCount() == 0) {
