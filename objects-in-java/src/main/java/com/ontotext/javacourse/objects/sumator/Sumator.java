@@ -3,7 +3,7 @@ package com.ontotext.javacourse.objects.sumator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.InvalidParameterException;
-import org.codehaus.plexus.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * The Sumator class contains methods for summing elements of type integer, double, string,
