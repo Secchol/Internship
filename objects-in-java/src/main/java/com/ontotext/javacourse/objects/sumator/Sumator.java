@@ -3,7 +3,6 @@ package com.ontotext.javacourse.objects.sumator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.InvalidParameterException;
-import java.util.logging.Logger;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -11,8 +10,6 @@ import org.apache.commons.lang.StringUtils;
  * BigInteger and BigDecimal.
  */
 public final class Sumator {
-
-  private static final Logger LOGGER = Logger.getLogger(Sumator.class.getName());
 
   private Sumator() throws IllegalAccessException {
     throw new IllegalAccessException("Sumator class is not meant to be instantiated");
