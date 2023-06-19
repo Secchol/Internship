@@ -1,32 +1,34 @@
-package com.ontotext.javacourse.reflectionannotationsregex.displayclassinfo;
+package com.ontotext.javacourse.reflection.displayclassinfo;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
 
 /**
- * The ClassInfo class contains a method that takes an instance of a class and displays information
+ * The ClassInfo class contains a method that takes an instance of a class and returns information
  * about the object including method signature, fields along with their type and value.
  */
 public final class DisplayClassInfo {
-  private static final Logger LOGGER = Logger.getLogger(DisplayClassInfo.class.getName());
 
   private DisplayClassInfo() throws IllegalAccessException {
     throw new IllegalAccessException("ClassInfo class is not meant to be instantiated");
   }
 
   /**
-   * Takes a class instance and displays information about the class methods and fields.
+   * Takes a class instance and returns a string that contains information about the class methods
+   * and fields.
    *
    * @param instance the instance to display the information of
    */
-  public static void displayClassInfo(Object instance) {
+  public static String returnClassInfo(Object instance) {
+    StringBuilder classInfo = new StringBuilder();
     Class<?> instanceClass = instance.getClass();
-    LOGGER.info("Class name: " + instanceClass.getName());
+    classInfo.append(String.format("Class name: %s", instanceClass.getName()));
+    classInfo.append(System.lineSeparator());
 
     Method[] instanceMethods = instanceClass.getDeclaredMethods();
     for (Method method : instanceMethods) {
-      LOGGER.info("Method: " + method.toString());
+      classInfo.append(String.format("Method: %s", method));
+      classInfo.append(System.lineSeparator());
     }
 
     Field[] instanceFields = instanceClass.getDeclaredFields();
@@ -34,16 +36,13 @@ public final class DisplayClassInfo {
       field.setAccessible(true);
       try {
         Object value = field.get(instance);
-        LOGGER.info(
-            "Field name: "
-                + field.getName()
-                + " "
-                + field.getType().getName()
-                + " value: "
-                + value);
+        classInfo.append(
+            String.format("Field name: %s %s value: ", field.getType().getName(), value));
+        classInfo.append(System.lineSeparator());
       } catch (IllegalAccessException exception) {
-        LOGGER.info(exception.getMessage());
+        classInfo.append(exception.getMessage());
       }
     }
+    return classInfo.toString();
   }
 }

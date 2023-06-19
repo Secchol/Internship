@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.reflectionannotationsregex.exampleclasses;
+package com.ontotext.javacourse.reflection.exampleclasses;
 
 /** The Dog class defines a dog that has a name, weight and age. */
 public class Dog extends Animal implements Mammal {

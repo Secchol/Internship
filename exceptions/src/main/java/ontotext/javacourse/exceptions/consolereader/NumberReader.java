@@ -5,8 +5,8 @@ import java.util.Scanner;
 import org.codehaus.plexus.util.StringUtils;
 
 /**
- * The NumberReader class contains a method which numbers in the 0-100 range and throws exception
- * when the read number is outside the range.
+ * The NumberReader class contains a method which reads numbers in the 0-100 range and throws
+ * exception when the read number is outside the range.
  */
 public final class NumberReader {
   private NumberReader() throws IllegalAccessException {
@@ -18,7 +18,7 @@ public final class NumberReader {
    * NumberOutsideOfRangeException is thrown else if the input is non-numeric
    * InvalidParameterException is thrown.
    */
-  public static void read() {
+  public static int read() {
     Scanner scanner = new Scanner(System.in);
     String input = scanner.nextLine();
     if (!StringUtils.isNumeric(input)) {
@@ -28,5 +28,6 @@ public final class NumberReader {
     if (number < 0 || number > 100) {
       throw new NumberOutsideOfRangeException("The given number is not in the 0-100 range.");
     }
+    return number;
   }
 }
