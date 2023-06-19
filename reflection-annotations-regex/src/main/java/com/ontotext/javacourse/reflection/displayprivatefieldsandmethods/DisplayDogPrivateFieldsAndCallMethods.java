@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.reflectionannotationsregex.displayprivatefieldsandmethods;
+package com.ontotext.javacourse.reflection.displayprivatefieldsandmethods;
 
 public class DisplayDogPrivateFieldsAndCallMethods {
   private DisplayDogPrivateFieldsAndCallMethods() throws IllegalAccessException {
