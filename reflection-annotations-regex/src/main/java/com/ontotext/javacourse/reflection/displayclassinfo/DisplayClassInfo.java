@@ -37,7 +37,7 @@ public final class DisplayClassInfo {
       try {
         Object value = field.get(instance);
         classInfo.append(
-            String.format("Field name: %s %s value: ", field.getType().getName(), value));
+            String.format("Field name: %s value: %s", field.getType().getName(), value));
         classInfo.append(System.lineSeparator());
       } catch (IllegalAccessException exception) {
         classInfo.append(exception.getMessage());
