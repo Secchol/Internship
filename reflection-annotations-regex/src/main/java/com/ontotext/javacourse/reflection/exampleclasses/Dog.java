@@ -1,6 +1,9 @@
 package com.ontotext.javacourse.reflection.exampleclasses;
 
+import com.ontotext.javacourse.reflection.orderobjects.Order;
+
 /** The Dog class defines a dog that has a name, weight and age. */
+@Order(value = 3)
 public class Dog extends Animal implements Mammal {
   private String name;
   private int age;
@@ -63,7 +66,7 @@ public class Dog extends Animal implements Mammal {
    *
    * @return the age of the dog in dog years
    */
-  private int returnDogYears() {
-    return this.age * 5;
+  private int returnAgeInDogYears(int age) {
+    return age * 5;
   }
 }

@@ -1,13 +1,11 @@
 package com.ontotext.javacourse.reflection.displayclassinfo;
 
 import com.ontotext.javacourse.reflection.exampleclasses.Dog;
-import com.ontotext.javacourse.reflection.instantiatebyname.InstantiateDog;
+import com.ontotext.javacourse.reflection.orderobjects.OrderObjects;
 
 public class Runner {
-
   public static void main(String[] args) {
-    Dog dog = new Dog("Murdzhu", 20, 100);
-    System.out.println(DisplayClassInfo.returnClassInfo(dog));
-    System.out.println(InstantiateDog.instantiateDogClassByName());
+    Dog dog = new Dog("Murdzho", 20, 120);
+    System.out.println(OrderObjects.orderObjects());
   }
 }
