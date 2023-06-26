@@ -1,10 +1,11 @@
 package com.ontotext.javacourse.reflection.exampleclasses;
 
 import com.ontotext.javacourse.reflection.orderobjects.Order;
+import org.jetbrains.annotations.NotNull;
 
 /** The Bird class defines a bird which has color, wingspan and species. */
 @Order(value = 1)
-public class Bird extends Animal {
+public class Bird extends Animal implements Comparable<Animal> {
   private final String species;
   private final String color;
   private final double wingspan;
@@ -41,5 +42,15 @@ public class Bird extends Animal {
 
   public double getWingspan() {
     return wingspan;
+  }
+
+  @Override
+  public int compareTo(@NotNull Animal otherAnimal) {
+    Order firstOrder = this.getClass().getAnnotation(Order.class);
+    Order secondOrder = otherAnimal.getClass().getAnnotation(Order.class);
+    if (firstOrder != null && secondOrder != null) {
+      return Integer.compare(firstOrder.value(), secondOrder.value());
+    }
+    return 0;
   }
 }

@@ -9,5 +9,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Order {
-  int value();
+  /**
+   * The class order value.
+   *
+   * @return the class order value.
+   */
+  int value() default 0;
 }
