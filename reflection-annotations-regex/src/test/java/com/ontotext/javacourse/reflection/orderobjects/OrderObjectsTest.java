@@ -2,19 +2,28 @@ package com.ontotext.javacourse.reflection.orderobjects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.ontotext.javacourse.reflection.exampleclasses.Animal;
+import com.ontotext.javacourse.reflection.exampleclasses.Bird;
+import com.ontotext.javacourse.reflection.exampleclasses.Cat;
+import com.ontotext.javacourse.reflection.exampleclasses.Dog;
 import org.junit.jupiter.api.Test;
 
 class OrderObjectsTest {
 
   @Test
-  void orderObjectsReturnsCorrectOutput() {
-    StringBuilder expectedOutput = new StringBuilder();
-    expectedOutput.append("com.ontotext.javacourse.reflection.exampleclasses.Bird");
-    expectedOutput.append(System.lineSeparator());
-    expectedOutput.append("com.ontotext.javacourse.reflection.exampleclasses.Cat");
-    expectedOutput.append(System.lineSeparator());
-    expectedOutput.append("com.ontotext.javacourse.reflection.exampleclasses.Dog");
-    String actualOutput = OrderObjects.orderObjects();
-    assertEquals(expectedOutput.toString(), actualOutput.trim());
+  void orderObjectsWorksWithCorrectInput() {
+    Dog dog = new Dog("Murdzho", 20, 20.2);
+    Cat cat = new Cat("Kat", 30, "Siamese");
+    Bird bird = new Bird("BIRDIE", "blue", 200.20);
+    Animal[] output = OrderObjects.orderObjects(dog, cat, bird);
+    assertInstanceOf(Bird.class, output[0]);
+    assertInstanceOf(Cat.class, output[1]);
+    assertInstanceOf(Dog.class, output[2]);
+  }
+
+  @Test
+  void orderObjectsReturnsEmptyArrayWithEmptyInput() {
+    Animal[] output = OrderObjects.orderObjects();
+    assertEquals(0, output.length);
   }
 }

@@ -4,6 +4,9 @@ import java.util.regex.Pattern;
 
 /** The ValidateEmail class contains a method which validates a string as an email address. */
 public final class ValidateEmail {
+  private static final Pattern PATTERN =
+      Pattern.compile("^[A-Za-z][A-Za-z0-9.-]*@[A-Za-z][A-Za-z0-9.-]*$");
+
   private ValidateEmail() throws IllegalAccessException {
     throw new IllegalAccessException("ValidateEmail class is not meant to be instantiated");
   }
@@ -15,7 +18,6 @@ public final class ValidateEmail {
    * @return a bool indicating whether the input is a valid email.
    */
   public static boolean validateEmail(String input) {
-    Pattern pattern = Pattern.compile("^[A-Za-z][A-Za-z0-9.-]*@[A-Za-z][A-Za-z0-9.-]*$");
-    return pattern.matcher(input).matches();
+    return PATTERN.matcher(input).matches();
   }
 }
