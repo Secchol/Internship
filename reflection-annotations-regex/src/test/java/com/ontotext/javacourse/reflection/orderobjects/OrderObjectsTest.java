@@ -2,10 +2,10 @@ package com.ontotext.javacourse.reflection.orderobjects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.ontotext.javacourse.reflection.exampleclasses.Animal;
-import com.ontotext.javacourse.reflection.exampleclasses.Bird;
-import com.ontotext.javacourse.reflection.exampleclasses.Cat;
-import com.ontotext.javacourse.reflection.exampleclasses.Dog;
+import com.ontotext.javacourse.reflection.utilityclasses.Animal;
+import com.ontotext.javacourse.reflection.utilityclasses.Bird;
+import com.ontotext.javacourse.reflection.utilityclasses.Cat;
+import com.ontotext.javacourse.reflection.utilityclasses.Dog;
 import org.junit.jupiter.api.Test;
 
 class OrderObjectsTest {

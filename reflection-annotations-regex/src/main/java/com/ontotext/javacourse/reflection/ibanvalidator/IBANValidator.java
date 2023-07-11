@@ -16,7 +16,7 @@ public final class IBANValidator {
   }
 
   /**
-   * Takes a string and replaces all valid IBAN numbers with '****'.
+   * Replaces all valid IBAN numbers in a string with '****'.
    *
    * @param iban the string to search iban in
    * @return the string with replaced valid iban numbers

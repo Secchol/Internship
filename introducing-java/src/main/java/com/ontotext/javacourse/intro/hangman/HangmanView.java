@@ -2,8 +2,12 @@ package com.ontotext.javacourse.intro.hangman;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
+import lombok.Getter;
+import lombok.Setter;
 
 /** Defines the view for Hangman game. Controls the display options. */
+@Getter
+@Setter
 public class HangmanView {
   private static final Scanner SCANNER = new Scanner(System.in);
   private static final Logger LOGGER = Logger.getLogger(HangmanView.class.getName());
