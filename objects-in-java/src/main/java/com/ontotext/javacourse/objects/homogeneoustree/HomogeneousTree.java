@@ -2,6 +2,7 @@ package com.ontotext.javacourse.objects.homogeneoustree;
 
 import java.security.InvalidParameterException;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * The HomogenousTree class defines an unbalanced binary tree with elements of a specified type.
@@ -88,8 +89,8 @@ public class HomogeneousTree<T extends Comparable<T>> {
       result.append(printInOrder(root.getLeftChild(), indent + 4));
     }
 
-    //String emptySpace = StringUtils.repeat(" ", indent);
-    //result.append(emptySpace);
+    String emptySpace = StringUtils.repeat(" ", indent);
+    result.append(emptySpace);
     result.append(root.getValue());
     result.append(System.lineSeparator());
 
