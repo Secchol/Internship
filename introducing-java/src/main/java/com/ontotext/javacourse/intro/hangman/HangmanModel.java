@@ -2,10 +2,12 @@ package com.ontotext.javacourse.intro.hangman;
 
 import java.util.ArrayList;
 import java.util.Random;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * Defines the model for Hangman game. Contains the business logic.
- */
+/** Defines the model for Hangman game. Contains the business logic. */
+@Getter
+@Setter
 public class HangmanModel {
   private final ArrayList<Character> charsGuessed;
   private int guessesLeft;
@@ -21,22 +23,6 @@ public class HangmanModel {
     setWord(words[random.nextInt(words.length)]);
     setGuessesLeft(5);
     charsGuessed = new ArrayList<>();
-  }
-
-  public String getWord() {
-    return word;
-  }
-
-  public void setWord(String word) {
-    this.word = word;
-  }
-
-  public int getGuessesLeft() {
-    return guessesLeft;
-  }
-
-  public void setGuessesLeft(int guessesLeft) {
-    this.guessesLeft = guessesLeft;
   }
 
   /**

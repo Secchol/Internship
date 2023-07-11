@@ -1,32 +1,16 @@
 package com.ontotext.javacourse.intro.hangman;
 
-/**
- * Defines the controller for Hangman application. The controller starts the hangman game.
- */
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+/** Defines the controller for Hangman application. The controller starts the hangman game. */
+@Getter
+@Setter
+@AllArgsConstructor
 public class HangmanController {
   private HangmanModel model;
   private HangmanView view;
-
-  public HangmanController(HangmanModel model, HangmanView view) {
-    setModel(model);
-    setView(view);
-  }
-
-  public HangmanModel getModel() {
-    return this.model;
-  }
-
-  public void setModel(HangmanModel model) {
-    this.model = model;
-  }
-
-  public HangmanView getView() {
-    return this.view;
-  }
-
-  public void setView(HangmanView view) {
-    this.view = view;
-  }
 
   /** Starts the hangman game and displays the end result. */
   public void startGame() {

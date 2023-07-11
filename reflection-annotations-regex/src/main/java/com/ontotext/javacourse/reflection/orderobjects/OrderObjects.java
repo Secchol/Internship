@@ -1,6 +1,6 @@
 package com.ontotext.javacourse.reflection.orderobjects;
 
-import com.ontotext.javacourse.reflection.exampleclasses.Animal;
+import com.ontotext.javacourse.reflection.utilityclasses.Animal;
 import java.util.Arrays;
 
 /**

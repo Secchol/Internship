@@ -1,7 +1,10 @@
 package com.ontotext.javacourse.reflection.displayclassinfo;
 
+import com.ontotext.javacourse.reflection.utilityclasses.ClassInfo;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The ClassInfo class contains a method that takes an instance of a class and returns information
@@ -9,40 +12,80 @@ import java.lang.reflect.Method;
  */
 public final class DisplayClassInfo {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(DisplayClassInfo.class);
+
   private DisplayClassInfo() throws IllegalAccessException {
     throw new IllegalAccessException("ClassInfo class is not meant to be instantiated");
   }
 
   /**
-   * Takes a class instance and returns a string that contains information about the class methods
-   * and fields.
+   * Returns a ClassInfo object that contains information about a class's methods and fields.
    *
    * @param instance the instance to display the information of
    */
-  public static String returnClassInfo(Object instance) {
-    StringBuilder classInfo = new StringBuilder();
+  public static ClassInfo returnClassInfo(Object instance) {
     Class<?> instanceClass = instance.getClass();
-    classInfo.append(String.format("Class name: %s", instanceClass.getName()));
-    classInfo.append(System.lineSeparator());
+    String className = getInstanceClassName(instanceClass);
+    Method[] methods = getInstanceMethods(instanceClass);
+    Field[] fields = getInstanceFields(instanceClass);
+    return new ClassInfo(className, fields, methods, null, null, -1, -1);
+  }
 
-    Method[] instanceMethods = instanceClass.getDeclaredMethods();
-    for (Method method : instanceMethods) {
-      classInfo.append(String.format("Method: %s", method));
-      classInfo.append(System.lineSeparator());
+  /**
+   * Returns a ClassInfo object that contains information about a class's methods and fields and
+   * logs it.
+   *
+   * @param instance the instance to display the information of
+   * @return the classInfo object
+   */
+  public static ClassInfo returnAndLogClassInfo(Object instance) {
+    ClassInfo classInfo = returnClassInfo(instance);
+    logClassInfo(classInfo, instance);
+    return classInfo;
+  }
+  /**
+   * Logs all the information about a given classInfo object.
+   *
+   * @param classInfo the object to display the information of
+   * @param instance the instance of the object
+   */
+  public static void logClassInfo(ClassInfo classInfo, Object instance) {
+    LOGGER.info("Class name: {}", classInfo.getClassName());
+    if (classInfo.getParentClass() != null) {
+      LOGGER.info("Parent class: {}", classInfo.getParentClass().getName());
     }
-
-    Field[] instanceFields = instanceClass.getDeclaredFields();
-    for (Field field : instanceFields) {
+    for (Method method : classInfo.getMethods()) {
+      LOGGER.info("Method: {}", method);
+    }
+    for (Field field : classInfo.getFields()) {
       field.setAccessible(true);
       try {
         Object value = field.get(instance);
-        classInfo.append(
-            String.format("Field name: %s value: %s", field.getType().getName(), value));
-        classInfo.append(System.lineSeparator());
+        LOGGER.info("Field name: {} value: {}", field.getType().getName(), value);
       } catch (IllegalAccessException exception) {
-        classInfo.append(exception.getMessage());
+        LOGGER.error(exception.getMessage());
       }
     }
-    return classInfo.toString();
+
+    LOGGER.info("Interfaces:");
+    if (classInfo.getInterfaces() != null) {
+      for (Class<?> item : classInfo.getInterfaces()) {
+        LOGGER.info(item.getName());
+      }
+    }
+    LOGGER.info("Private method result is: {}", classInfo.getPrivateMethodResult());
+    LOGGER.info("Private field result is {}", classInfo.getPrivateFieldResult());
+  }
+
+  private static String getInstanceClassName(Class<?> instanceClass) {
+    return instanceClass.getName();
+  }
+
+  private static Method[] getInstanceMethods(Class<?> instanceClass) {
+    return instanceClass.getDeclaredMethods();
+  }
+
+  private static Field[] getInstanceFields(Class<?> instanceClass) {
+    return instanceClass.getDeclaredFields();
   }
 }
