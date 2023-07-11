@@ -2,7 +2,7 @@ package com.ontotext.javacourse.objects.homogeneoustree;
 
 import java.security.InvalidParameterException;
 import java.util.logging.Logger;
-import org.apache.commons.lang3.StringUtils;
+import org.codehaus.plexus.util.StringUtils;
 
 /**
  * The HomogenousTree class defines an unbalanced binary tree with elements of a specified type.
