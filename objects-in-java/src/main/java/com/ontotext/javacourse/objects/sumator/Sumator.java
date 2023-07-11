@@ -3,7 +3,6 @@ package com.ontotext.javacourse.objects.sumator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.InvalidParameterException;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * The Sumator class contains methods for summing elements of type integer, double, string,
@@ -83,11 +82,20 @@ public final class Sumator {
    * @throws InvalidParameterException if one of the numbers is non-numeric
    */
   public static void validateInput(String firstNumber, String secondNumber) {
-    if (!StringUtils.isNumeric(firstNumber)
+    if (!isNumeric(firstNumber)
         || firstNumber.equals("")
-        || !StringUtils.isNumeric(secondNumber)
+        || !isNumeric(secondNumber)
         || secondNumber.equals("")) {
       throw new InvalidParameterException("The given number is non numeric.");
+    }
+  }
+
+  private static boolean isNumeric(String number) {
+    try {
+      Double parsedNum = Double.parseDouble(number);
+      return true;
+    } catch (Exception exception) {
+      return false;
     }
   }
 }
