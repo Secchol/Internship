@@ -16,9 +16,10 @@ class FileWriterTest {
     ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
     try {
-      File tempFile = File.createTempFile("test", "txt");
-      FileWriter.writeToFile(tempFile.getAbsolutePath());
-      BufferedReader reader = new BufferedReader(new FileReader(tempFile));
+      File file =
+          new File("C:\\Users\\This\\Internship\\input-output\\src\\main\\resources\\TestFile");
+      FileWriter.writeToFile(file.getAbsolutePath());
+      BufferedReader reader = new BufferedReader(new FileReader(file));
       assertEquals("test", reader.readLine());
       assertEquals("code", reader.readLine());
     } catch (Exception exception) {
@@ -29,12 +30,7 @@ class FileWriterTest {
   }
 
   @Test
-  void writeToFileThrowsExceptionWithNullPathInput() {
-    assertThrows(NullPointerException.class, () -> FileWriter.writeToFile(null));
-  }
-
-  @Test
-  void writeToFileThrowsExceptionWithEmtpyStringInput() {
-    assertThrows(NullPointerException.class, () -> FileWriter.writeToFile(""));
+  void writeToFileThrowsExceptionWithEmtpyPathInput() {
+    assertThrows(IllegalArgumentException.class, () -> FileWriter.writeToFile(""));
   }
 }

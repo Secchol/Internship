@@ -2,8 +2,8 @@ package com.ontotext.javacourse.reflection.instantiatebyname;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.ontotext.javacourse.reflection.animals.Dog;
 import com.ontotext.javacourse.reflection.utilityclasses.ClassInfo;
-import com.ontotext.javacourse.reflection.utilityclasses.Dog;
 import org.junit.jupiter.api.Test;
 
 class InstantiateClassTest {
@@ -12,9 +12,9 @@ class InstantiateClassTest {
   void returnAndLogClassInfoReturnsCorrectOutput() {
     Dog dog = new Dog("Doge", 20, 200.4);
     ClassInfo classInfo = InstantiateClass.instantiateClassByName();
-    assertEquals("com.ontotext.javacourse.reflection.utilityclasses.Dog", classInfo.getClassName());
+    assertEquals("com.ontotext.javacourse.reflection.animals.Dog", classInfo.getClassName());
     assertEquals(
-        "com.ontotext.javacourse.reflection.utilityclasses.Animal",
+        "com.ontotext.javacourse.reflection.animals.Animal",
         classInfo.getParentClass().getName());
     assertEquals(9, classInfo.getMethods().length);
     assertEquals(4, classInfo.getFields().length);

@@ -1,8 +1,8 @@
 package com.ontotext.javacourse.reflection.displayprivateinfo;
 
 import com.ontotext.javacourse.reflection.displayclassinfo.DisplayClassInfo;
+import com.ontotext.javacourse.reflection.instantiatebyname.InstantiateClass;
 import com.ontotext.javacourse.reflection.utilityclasses.ClassInfo;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import org.slf4j.Logger;
@@ -27,19 +27,21 @@ public final class DisplayPrivateInfo {
    */
   public static ClassInfo displayPrivateInfo() {
     try {
-      Class<?> dogClass = Class.forName("com.ontotext.javacourse.reflection.utilityclasses.Dog");
-      Constructor<?> dogConstructor =
-          dogClass.getConstructor(String.class, int.class, double.class);
-      Object dog = dogConstructor.newInstance("Donkey", 20, 120.20);
+      Class<?> dogClass =
+          InstantiateClass.getClass("com.ontotext.javacourse.reflection.animals.Dog");
+      Object dog = InstantiateClass.createDog("Donkey", 20, 120.20);
+      if (dog == null || dogClass == null) {
+        throw new IllegalArgumentException("Cannot create dog!");
+      }
       ClassInfo classInfo = DisplayClassInfo.returnClassInfo(dog);
       classInfo.setPrivateMethodResult(privateMethodResult(dog, dogClass));
       classInfo.setPrivateFieldResult(privateFieldResult(dog, dogClass));
-      DisplayClassInfo.logClassInfo(classInfo, dog);
+      DisplayClassInfo.logClassInfo(classInfo);
       return classInfo;
     } catch (Exception exception) {
       LOGGER.error(exception.getMessage());
-      return null;
     }
+    return null;
   }
 
   private static int privateMethodResult(Object dogInstance, Class<?> dogClass) {
@@ -47,25 +49,21 @@ public final class DisplayPrivateInfo {
       Method privateMethod = dogClass.getDeclaredMethod("returnAgeInDogYears", int.class);
       privateMethod.setAccessible(true);
       int dogAge = privateFieldResult(dogInstance, dogClass);
-      int privateMethodResult =
-          Integer.parseInt(privateMethod.invoke(dogInstance, dogAge).toString());
-      return privateMethodResult;
+      return Integer.parseInt(privateMethod.invoke(dogInstance, dogAge).toString());
     } catch (Exception exception) {
       LOGGER.error(exception.getMessage());
-      return -1;
     }
+    return -1;
   }
 
   private static int privateFieldResult(Object dogInstance, Class<?> dogClass) {
-
     try {
       Field privateField = dogClass.getDeclaredField("age");
       privateField.setAccessible(true);
-      int dogAge = Integer.parseInt(privateField.get(dogInstance).toString());
-      return dogAge;
+      return Integer.parseInt(privateField.get(dogInstance).toString());
     } catch (Exception exception) {
       LOGGER.error(exception.getMessage());
-      return -1;
     }
+    return -1;
   }
 }

@@ -1,10 +1,13 @@
 package com.ontotext.javacourse.inputoutput.reversefile;
 
 import java.io.*;
-import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** The ReverseFile class contains a method which takes a file and reverses its content. */
 public class ReverseFile {
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReverseFile.class);
+
   private ReverseFile() throws IllegalAccessException {
     throw new IllegalAccessException("ReverseFile class is not meant to be instantiated");
   }
@@ -17,23 +20,23 @@ public class ReverseFile {
    */
   public static File reverseFileContent(File file) {
     if (file == null) {
-      throw new NullPointerException("File is null!");
+      throw new IllegalArgumentException("File is null!");
     }
-    try (Scanner scanner = new Scanner(file)) {
-      StringBuffer fileContent = new StringBuffer();
-      while (scanner.hasNextLine()) {
-        String line = scanner.nextLine();
-        if (!line.equals("")) {
-          fileContent.append(line + "\n");
-        }
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+      StringBuilder fileContent = new StringBuilder();
+      String currentLine = reader.readLine();
+      while (currentLine != null) {
+        fileContent.append(currentLine);
+        fileContent.append(System.lineSeparator());
+        currentLine = reader.readLine();
       }
       try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
         writer.write(fileContent.reverse().toString().trim());
       }
       return file;
     } catch (Exception exception) {
-      exception.printStackTrace();
-      return null;
+      LOGGER.error(exception.getMessage());
     }
+    return null;
   }
 }

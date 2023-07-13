@@ -7,6 +7,8 @@ import java.security.InvalidParameterException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The TransferObject contains a method which transfers the content from a given InputStream to an
@@ -16,13 +18,14 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class TransferObject {
+  private static final Logger LOGGER = LoggerFactory.getLogger(TransferObject.class);
   private InputStream inputStream;
   private OutputStream outputStream;
 
   /**
    * Transfers the content from the InputStream to the OutputStream.
    *
-   * @param numberOfBytes the number of bytes to transfer
+   * @param numberOfBytes the number of bytes to transfer at a time
    * @param offset the number of bytes to be skipped before the transferring begins
    * @return the number of bytes transferred
    */
@@ -36,16 +39,18 @@ public class TransferObject {
       }
       inputStream.skip(offset);
       byte[] bytes = inputStream.readNBytes(numberOfBytes);
-      if (bytes.length == 0) {
-        throw new InvalidParameterException("Input stream is empty");
+      int bytesTransffered = 0;
+      while (bytes.length != 0) {
+        bytesTransffered += bytes.length;
+        outputStream.write(bytes);
+        bytes = inputStream.readNBytes(numberOfBytes);
       }
-      outputStream.write(bytes);
       inputStream.close();
       outputStream.close();
-      return bytes.length;
+      return bytesTransffered;
     } catch (IOException exception) {
-      exception.printStackTrace();
-      return -1;
+      LOGGER.error(exception.getMessage());
     }
+    return -1;
   }
 }
