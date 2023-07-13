@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.reflection.utilityclasses;
+package com.ontotext.javacourse.reflection.animals;
 
 import com.ontotext.javacourse.reflection.orderobjects.Order;
 import lombok.AllArgsConstructor;

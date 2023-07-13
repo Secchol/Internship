@@ -24,16 +24,16 @@ class TransferObjectTest {
 
   @Test
   void transferReturnsCorrectOutputWithCorrectInput() {
-    assertEquals(3, transferObject.transfer(3, 2));
+    assertEquals(4, transferObject.transfer(3, 2));
   }
 
   @Test
-  void transferThrowsExceptionIfInputStreamIsEmpty() {
+  void transferReturnsZeroIfInputStreamIsEmpty() {
     byte[] bytes = {};
     InputStream inputStream = new ByteArrayInputStream(bytes);
     OutputStream outputStream = new ByteArrayOutputStream();
     TransferObject transferObject = new TransferObject(inputStream, outputStream);
-    assertThrows(InvalidParameterException.class, () -> transferObject.transfer(2, 3));
+    assertEquals(0, transferObject.transfer(2, 3));
   }
 
   @Test

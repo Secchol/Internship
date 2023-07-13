@@ -4,69 +4,67 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.util.InputMismatchException;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class ConsoleReaderTest {
 
-  @BeforeEach
-  void setUp() {
-    System.setIn(new ByteArrayInputStream(new byte[0]));
+  @AfterEach
+  void tearDown() {
+    System.setIn(System.in);
   }
 
   @Test
   void readStringWorksWithCorrectInput() {
     String input = "basic input";
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
+    setInputStreamValue(input);
     assertEquals(input, ConsoleReader.readString());
   }
 
   @Test
   void readIntWorksWithCorrectInput() {
     String input = "2024";
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
+    setInputStreamValue(input);
     assertEquals(Integer.parseInt(input), ConsoleReader.readInt());
   }
 
   @Test
   void readIntThrowsExceptionWithInvalidInput() {
     String input = "###sdfsd";
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
+    setInputStreamValue(input);
     assertThrows(InputMismatchException.class, () -> ConsoleReader.readInt());
   }
 
   @Test
   void readCharWorksWithCorrectInput() {
     String input = "a";
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
+    setInputStreamValue(input);
     assertEquals(input.charAt(0), ConsoleReader.readChar());
   }
 
   @Test
   void readCharThrowsExceptionIfInputIsNotSingleCharacter() {
     String input = "wrong";
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
+    setInputStreamValue(input);
     assertThrows(IllegalArgumentException.class, () -> ConsoleReader.readChar());
   }
 
   @Test
   void readFloatWorksWithCorrectInput() {
     String input = "2024.24";
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
+    setInputStreamValue(input);
     assertEquals(Float.parseFloat(input), ConsoleReader.readFloat());
   }
 
   @Test
   void readFloatThrowsExceptionWithInvalidInput() {
     String input = "12.addd";
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
+    setInputStreamValue(input);
     assertThrows(InputMismatchException.class, () -> ConsoleReader.readFloat());
+  }
+
+  private void setInputStreamValue(String inputStreamValue) {
+    ByteArrayInputStream inputStream = new ByteArrayInputStream(inputStreamValue.getBytes());
+    System.setIn(inputStream);
   }
 }

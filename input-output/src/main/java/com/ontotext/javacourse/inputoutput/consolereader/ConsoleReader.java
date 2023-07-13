@@ -16,7 +16,6 @@ public final class ConsoleReader {
   private ConsoleReader() throws IllegalAccessException {
     throw new IllegalAccessException("ConsoleReader class is not meant to be instantiated");
   }
-
   /**
    * Reads a string from the console.
    *
@@ -24,10 +23,8 @@ public final class ConsoleReader {
    */
   public static String readString() {
     LOGGER.info("Enter a string:");
-    String input = SCANNER.nextLine();
-    return input;
+    return SCANNER.nextLine();
   }
-
   /**
    * Reads an integer from the console.
    *
@@ -35,10 +32,8 @@ public final class ConsoleReader {
    */
   public static int readInt() {
     LOGGER.info("Enter an integer:");
-    int input = SCANNER.nextInt();
-    return input;
+    return SCANNER.nextInt();
   }
-
   /**
    * Reads a character from the console.
    *
@@ -52,7 +47,6 @@ public final class ConsoleReader {
     }
     return input.charAt(0);
   }
-
   /**
    * Reads a float from the console.
    *
@@ -60,7 +54,6 @@ public final class ConsoleReader {
    */
   public static float readFloat() {
     LOGGER.info("Enter a float:");
-    float input = SCANNER.nextFloat();
-    return input;
+    return SCANNER.nextFloat();
   }
 }

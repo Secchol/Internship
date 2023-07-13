@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.reflection.utilityclasses;
+package com.ontotext.javacourse.reflection.animals;
 
 /** Defines a mammal interface that can make a sound. */
 public interface Mammal {
