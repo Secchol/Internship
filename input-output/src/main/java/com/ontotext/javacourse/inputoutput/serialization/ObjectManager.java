@@ -28,7 +28,7 @@ public final class ObjectManager {
       throw new IllegalArgumentException("Path cannot be null!");
     }
     try (ObjectOutputStream objectOutputStream =
-        new ObjectOutputStream(new FileOutputStream(path)); ) {
+        new ObjectOutputStream(new FileOutputStream(path))) {
       File file = new File(path);
       if (!file.exists()) {
         Files.createFile(Paths.get(path));

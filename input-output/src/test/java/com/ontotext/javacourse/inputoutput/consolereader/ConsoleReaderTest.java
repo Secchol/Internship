@@ -46,7 +46,7 @@ class ConsoleReaderTest {
   void readCharThrowsExceptionIfInputIsNotSingleCharacter() {
     String input = "wrong";
     setInputStreamValue(input);
-    assertThrows(IllegalArgumentException.class, () -> ConsoleReader.readChar());
+    assertThrows(IllegalArgumentException.class, ConsoleReader::readChar);
   }
 
   @Test
