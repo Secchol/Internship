@@ -23,7 +23,6 @@
         <module>exceptions</module>
         <module>reflection-annotations-regex</module>
         <module>input-output</module>
-        <module>collections</module>
     </modules>
     <dependencyManagement>
         <dependencies>
