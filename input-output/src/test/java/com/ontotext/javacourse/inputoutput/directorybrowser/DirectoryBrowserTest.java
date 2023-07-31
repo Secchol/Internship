@@ -11,7 +11,7 @@ class DirectoryBrowserTest {
   void listContentWorksWithFileInput() {
     FileInfo fileInfo =
         DirectoryBrowser.listContent(
-            "C:\\Users\\This\\Internship\\input-output\\src\\main\\resources\\TestFile");
+            "C:/Users/This/Internship/input-output/src/main/resources/TestFile");
     assertEquals(0, fileInfo.getFolders().size());
     assertEquals(0, fileInfo.getFiles().size());
   }
@@ -20,7 +20,7 @@ class DirectoryBrowserTest {
   void listContentWorksWithFolderInput() {
     FileInfo fileInfo =
         DirectoryBrowser.listContent(
-            "C:\\Users\\This\\Internship\\input-output\\src\\main\\resources\\testFolder");
+            "C:/Users/This/Internship/input-output/src/main/resources/testFolder");
     assertEquals(1, fileInfo.getFolders().size());
     assertEquals(3, fileInfo.getFiles().size());
   }

@@ -19,8 +19,8 @@ class ObjectManagerTest {
   @ParameterizedTest
   @ValueSource(
       strings = {
-        "C:\\Users\\This\\Internship\\input-output\\src\\main\\resources\\TestFile",
-        "C:\\Users\\This\\Internship\\input-output\\src\\main\\resources\\NonExistingFile"
+        "C:/Users/This/Internship/input-output/src/main/resources/TestFile",
+        "C:/Users/This/Internship/input-output/src/main/resources/NonExistingFile"
       })
   void saveObjectAndGetObjectWorkWithCorrectInput(String path) {
     ObjectManager.saveObject(path, USERDEFINEDOBJECT);
@@ -44,7 +44,7 @@ class ObjectManagerTest {
 
   @ParameterizedTest
   @EmptySource
-  @ValueSource(strings = {"\\wrongPath"})
+  @ValueSource(strings = {"/wrongPath"})
   void getObjectThrowsExceptionIfPathIsNotFound(String path) {
     assertThrows(IOException.class, () -> ObjectManager.getObject(path));
   }

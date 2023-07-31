@@ -1,13 +1,18 @@
 package com.ontotext.javacourse.inputoutput.filewriter;
 
-import com.ontotext.javacourse.inputoutput.reversefile.ReverseFile;
-import java.io.File;
+import com.ontotext.javacourse.inputoutput.consolereader.ConsoleReader;
+import java.io.ByteArrayInputStream;
 
 public class Runner {
   public static void main(String[] args) {
-    File file =
-        new File(
-            "C:\\Users\\This\\Internship\\input-output\\src\\main\\java\\com\\ontotext\\javacourse\\inputoutput\\filewriter\\file");
-    ReverseFile.reverseFileContent(file);
+
+    ConsoleReader reader = new ConsoleReader();
+    setInputStreamValue("1000\n");
+    System.out.println(reader.readInt());
+  }
+
+  private static void setInputStreamValue(String inputStreamValue) {
+    ByteArrayInputStream inputStream = new ByteArrayInputStream(inputStreamValue.getBytes());
+    System.setIn(inputStream);
   }
 }
