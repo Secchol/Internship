@@ -11,7 +11,7 @@ class ReverseFileTest {
   void testReverseFileContentReturnsCorrectOutputWithCorrectInput() {
     try {
       File file =
-          new File("C:\\Users\\This\\Internship\\input-output\\src\\main\\resources\\TestFile");
+          new File("C:/Users/This/Internship/input-output/src/main/resources/TestFile");
       BufferedWriter writer = new BufferedWriter(new FileWriter(file));
       writer.write("Line 1" + System.lineSeparator());
       writer.write("Line 2" + System.lineSeparator());

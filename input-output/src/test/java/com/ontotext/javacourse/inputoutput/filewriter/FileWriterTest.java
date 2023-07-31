@@ -17,7 +17,7 @@ class FileWriterTest {
     System.setIn(inputStream);
     try {
       File file =
-          new File("C:\\Users\\This\\Internship\\input-output\\src\\main\\resources\\TestFile");
+          new File("C:/Users/This/Internship/input-output/src/main/resources/TestFile");
       FileWriter.writeToFile(file.getAbsolutePath());
       BufferedReader reader = new BufferedReader(new FileReader(file));
       assertEquals("test", reader.readLine());
