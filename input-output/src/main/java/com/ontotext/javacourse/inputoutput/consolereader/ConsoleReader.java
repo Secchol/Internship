@@ -1,6 +1,7 @@
 package com.ontotext.javacourse.inputoutput.consolereader;
 
 import java.util.Scanner;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
  * The ConsoleReader class contains methods that read string,char,float and integer from the
  * console.
  */
+@NoArgsConstructor
 public class ConsoleReader {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleReader.class);
@@ -22,22 +24,22 @@ public class ConsoleReader {
     LOGGER.info("Enter a string:");
     return scanner.nextLine();
   }
+
   /**
    * Reads an integer from the console.
    *
    * @return the given integer
    */
-
   public int readInt() {
     LOGGER.info("Enter an integer:");
     return scanner.nextInt();
   }
+
   /**
    * Reads a character from the console.
    *
    * @return the given character
    */
-
   public char readChar() {
     LOGGER.info("Enter a character:");
     String input = scanner.nextLine();

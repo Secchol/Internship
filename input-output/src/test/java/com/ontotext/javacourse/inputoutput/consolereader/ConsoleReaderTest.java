@@ -4,64 +4,56 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.util.InputMismatchException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ConsoleReaderTest {
 
   private ConsoleReader consoleReader;
 
-  @BeforeEach
-  void setUp() {
+  private void setUp(String value) {
+    setInputStreamValue(value);
     consoleReader = new ConsoleReader();
   }
 
   @Test
   void readStringWorksWithCorrectInput() {
-    String input = "basic input";
-    setInputStreamValue(input);
-    assertEquals(input, consoleReader.readString());
+    setUp("basic input\n");
+    assertEquals("basic input", consoleReader.readString());
   }
 
   @Test
   void readIntWorksWithCorrectInput() {
-    String input = "2024";
-    setInputStreamValue(input);
-    assertEquals(Integer.parseInt(input), consoleReader.readInt());
+    setUp("2024");
+    assertEquals(Integer.parseInt("2024"), consoleReader.readInt());
   }
 
   @Test
   void readIntThrowsExceptionWithInvalidInput() {
-    String input = "###sdfsd";
-    setInputStreamValue(input);
+    setUp("###sdfsd\n");
     assertThrows(InputMismatchException.class, () -> consoleReader.readInt());
   }
 
   @Test
   void readCharWorksWithCorrectInput() {
-    String input = "a";
-    setInputStreamValue(input);
-    assertEquals(input.charAt(0), consoleReader.readChar());
+    setUp("a\n");
+    assertEquals('a', consoleReader.readChar());
   }
 
   @Test
   void readCharThrowsExceptionIfInputIsNotSingleCharacter() {
-    String input = "wrong";
-    setInputStreamValue(input);
+    setUp("wrong\n");
     assertThrows(IllegalArgumentException.class, consoleReader::readChar);
   }
 
   @Test
   void readFloatWorksWithCorrectInput() {
-    String input = "2024.24";
-    setInputStreamValue(input);
-    assertEquals(Float.parseFloat(input), consoleReader.readFloat());
+    setUp("2024.24\n");
+    assertEquals(Float.parseFloat("2024.24\n"), consoleReader.readFloat());
   }
 
   @Test
   void readFloatThrowsExceptionWithInvalidInput() {
-    String input = "12.addd";
-    setInputStreamValue(input);
+    setUp("12.addd\n");
     assertThrows(InputMismatchException.class, () -> consoleReader.readFloat());
   }
 
