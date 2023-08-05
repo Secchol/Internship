@@ -35,9 +35,8 @@ public final class DirectoryBrowser {
       FileInfo fileInfo = new FileInfo(getFolders(file), getFiles(file));
       LOGGER.info(fileInfo.toString().replace(", ", System.lineSeparator()));
       return fileInfo;
-    } else {
-      throw new IllegalArgumentException("The path is invalid!");
     }
+    throw new IllegalArgumentException("The path is invalid!");
   }
 
   private static List<File> getFolders(File file) {
