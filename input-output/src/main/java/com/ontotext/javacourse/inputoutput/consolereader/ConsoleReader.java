@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The ConsoleReader class contains methods that read string,char,float and integer from the
+ * The ConsoleReader class contains methods that read string, char, float and integer from the
  * console.
  */
 @NoArgsConstructor
