@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
  * simultaneously and create statistics for the results.
  */
 public class HashDice {
+  private static final Random randomNumber = new Random();
   private static final Logger LOGGER = LoggerFactory.getLogger(HashDice.class);
   private final Scanner scanner;
 
@@ -34,21 +35,22 @@ public class HashDice {
       String combination = rollDice(sides);
       results.computeIfAbsent(combination, k -> new HashSet<>());
       results.get(combination).add(currentRoll);
-      displayStatistics(results);
     }
+    displayStatistics(results);
     return results;
   }
 
   private int getSides() {
+    LOGGER.info("Enter dice sides:");
     return scanner.nextInt();
   }
 
   private int getRolls() {
+    LOGGER.info("Enter number of rolls:");
     return scanner.nextInt();
   }
 
   private String rollDice(int sides) {
-    Random randomNumber = new Random();
     int firstDiceResult = randomNumber.nextInt(1, sides + 1);
     int secondDiceResult = randomNumber.nextInt(1, sides + 1);
     return firstDiceResult + "," + secondDiceResult;
@@ -58,7 +60,7 @@ public class HashDice {
     results.forEach(
         (key, value) ->
             LOGGER.info(
-                "{} - {}",
+                "Dice combination: {} - At throw number: {}",
                 key,
                 value.stream().map(Object::toString).collect(Collectors.joining(", "))));
   }

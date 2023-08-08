@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
+import java.util.regex.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The ExceptionsMessageManager class contains methods that generates a single string message from a
+ * The ExceptionsMessageManager class contains methods that generate a single string message from a
  * combination of a predefined map of string messages containing exception key and exception
  * message.
  */
 @Getter
 @Setter
 public class ExceptionsMessageManager {
-  private static final String DELIMITER = " | ";
-
-  private static final String DELIMITERREGEX = " \\| ";
+  private static String delimiter;
   private final ArrayList<String> elementsToConcatenate;
   private Map<String, String> map;
 
-  public ExceptionsMessageManager(Map<String, String> map) {
+  public ExceptionsMessageManager(Map<String, String> map, String delimiter) {
     elementsToConcatenate = new ArrayList<>();
+    ExceptionsMessageManager.delimiter = delimiter;
     setMap(map);
   }
 
@@ -38,7 +38,7 @@ public class ExceptionsMessageManager {
     if (messagesCombination.isEmpty()) {
       return new ArrayList<>();
     }
-    return Arrays.stream(messagesCombination.split(DELIMITERREGEX)).toList();
+    return Arrays.stream(messagesCombination.split(Pattern.quote(delimiter))).toList();
   }
 
   /**
@@ -75,6 +75,6 @@ public class ExceptionsMessageManager {
    * @return the value of the generated string
    */
   public String getMessage() {
-    return String.join(DELIMITER, elementsToConcatenate);
+    return String.join(delimiter, elementsToConcatenate);
   }
 }
