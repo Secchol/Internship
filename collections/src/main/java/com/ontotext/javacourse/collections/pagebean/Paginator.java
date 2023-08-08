@@ -1,8 +1,8 @@
 package com.ontotext.javacourse.collections.pagebean;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Supplier;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,15 +10,43 @@ import org.slf4j.LoggerFactory;
  * The class gets a list of items and distributes it into pages. It provides methods which
  * manipulate the items.
  */
+@Getter
 public class Paginator<T> {
+
+  private static final Scanner SCANNER = new Scanner(System.in);
   private static final Logger LOGGER = LoggerFactory.getLogger(Paginator.class);
   private final int pageSize;
-  private List<LinkedList<T>> list;
+  private final List<LinkedList<T>> list;
   private int currentPageIndex = -1;
+  private final Map<String, Supplier<String>> commands =
+      Map.of(
+          "next()", () -> next().toString(),
+          "previous()", () -> previous().toString(),
+          "hasNext()", () -> Boolean.toString(hasNext()),
+          "hasPrevious()", () -> Boolean.toString(hasPrevious()),
+          "firstPage()", () -> firstPage().toString(),
+          "lastPage()", () -> lastPage().toString(),
+          "getCurrentPageNumber()", () -> String.valueOf(getCurrentPageNumber()));
 
   public Paginator(List<T> items, int pageSize) {
     this.pageSize = pageSize;
+    this.list = new ArrayList<>();
     distributePages(items);
+  }
+
+  /**
+   * Executes the next() method and starts taking input commands from the console and displays their
+   * result.
+   */
+  public void start() {
+    LOGGER.info(commands.get("next()").get());
+    LOGGER.info("Enter command: ");
+    String command = SCANNER.nextLine();
+    while (!command.equals("end")) {
+      executeCommand(command);
+      LOGGER.info("Enter command: ");
+      command = SCANNER.nextLine();
+    }
   }
 
   /**
@@ -27,7 +55,11 @@ public class Paginator<T> {
    * @return a list that contains the current page items
    */
   public List<T> next() {
-    return list.get(++currentPageIndex).stream().toList();
+    if (hasNext()) {
+      return list.get(++currentPageIndex).stream().toList();
+    }
+    LOGGER.error("Invalid operation! There are no next items!");
+    return new ArrayList<>();
   }
 
   /**
@@ -36,10 +68,10 @@ public class Paginator<T> {
    * @return a list that contains the previous page items.
    */
   public List<T> previous() {
-    if (currentPageIndex > 0) {
+    if (hasPrevious()) {
       return list.get(--currentPageIndex).stream().toList();
     }
-    LOGGER.info("Invalid operation! There are not any previous items!");
+    LOGGER.error("Invalid operation! There are no previous items!");
     return new ArrayList<>();
   }
 
@@ -87,11 +119,10 @@ public class Paginator<T> {
    * @return the current page number
    */
   public int getCurrentPageNumber() {
-    return currentPageIndex;
+    return currentPageIndex + 1;
   }
 
   private void distributePages(List<T> items) {
-    list = new ArrayList<>();
     int currentIndex = 0;
     for (int i = 0; i < items.size() / pageSize; i++) {
       LinkedList<T> page = new LinkedList<>();
@@ -108,5 +139,12 @@ public class Paginator<T> {
     if (remainingElements.stream().count() != 0) {
       list.add(remainingElements);
     }
+  }
+
+  private void executeCommand(String command) {
+    if (!commands.containsKey(command)) {
+      throw new IllegalArgumentException("Command is invalid!");
+    }
+    LOGGER.info(commands.get(command).get());
   }
 }

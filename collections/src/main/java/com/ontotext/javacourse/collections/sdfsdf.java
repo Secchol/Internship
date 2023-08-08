@@ -1,20 +1,12 @@
 package com.ontotext.javacourse.collections;
 
-import com.ontotext.javacourse.collections.exceptionsmessagemanager.ExceptionsMessageManager;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class sdfsdf {
+  private static final Logger LOGGER = LoggerFactory.getLogger(sdfsdf.class);
+
   public static void main(String args[]) {
-    Map<String, String> map = new HashMap<>();
-    map.put("Invalid debit card number", null);
-    map.put("Wrong PIN", "Invalid zip code");
-    map.put("Invalid argument", null);
-    var exceptionsMessageManager = new ExceptionsMessageManager(map);
-    System.out.println(
-        Arrays.stream("Wrong PIN | Invalid debit card number | Invalid zip code".split(" | "))
-            .collect(Collectors.joining(" | ")));
+
   }
 }
