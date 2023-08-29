@@ -25,7 +25,7 @@ public class PaginatorController<T> {
     String command = "next()";
     while (!command.equals("end")) {
       result = returnCommandResult(command);
-      if (result.length() == 0) {
+      if (result.equals("[]")) {
         result = "Invalid operation!";
       }
       paginatorView.displayCommandResult(result);

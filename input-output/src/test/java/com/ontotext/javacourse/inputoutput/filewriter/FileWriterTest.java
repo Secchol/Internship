@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
+import java.net.URL;
 import org.junit.jupiter.api.Test;
 
 class FileWriterTest {
@@ -16,8 +17,11 @@ class FileWriterTest {
     ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
     System.setIn(inputStream);
     try {
-      File file =
-          new File("C:/Users/This/Internship/input-output/src/main/resources/TestFile");
+      URL resource = getClass().getClassLoader().getResource("TestFile");
+      if (resource == null) {
+        throw new IllegalArgumentException("File not found!");
+      }
+      File file = new File(resource.toURI());
       FileWriter.writeToFile(file.getAbsolutePath());
       BufferedReader reader = new BufferedReader(new FileReader(file));
       assertEquals("test", reader.readLine());

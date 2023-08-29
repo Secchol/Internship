@@ -3,6 +3,7 @@ package com.ontotext.javacourse.inputoutput.reversefile;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.*;
+import java.net.URL;
 import org.junit.jupiter.api.Test;
 
 class ReverseFileTest {
@@ -10,8 +11,11 @@ class ReverseFileTest {
   @Test
   void testReverseFileContentReturnsCorrectOutputWithCorrectInput() {
     try {
-      File file =
-          new File("C:/Users/This/Internship/input-output/src/main/resources/TestFile");
+      URL resource = getClass().getClassLoader().getResource("TestFile");
+      if (resource == null) {
+        throw new IllegalArgumentException("File not found!");
+      }
+      File file = new File(resource.toURI());
       BufferedWriter writer = new BufferedWriter(new FileWriter(file));
       writer.write("Line 1" + System.lineSeparator());
       writer.write("Line 2" + System.lineSeparator());
@@ -33,7 +37,7 @@ class ReverseFileTest {
       assertEquals("2 eniL", line3);
       assertEquals("", line4);
       assertEquals("1 eniL", line5);
-    } catch (IOException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
