@@ -15,8 +15,7 @@ import lombok.ToString;
 @ToString
 public class LRUCache<K, V> {
   private final int size;
-
-  private final LinkedHashMap<K, V> cache;
+  private final Map<K, V> cache;
 
   public LRUCache(int size) {
     this.size = size;
