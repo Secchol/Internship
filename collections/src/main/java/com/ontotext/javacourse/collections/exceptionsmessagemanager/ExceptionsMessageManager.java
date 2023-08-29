@@ -1,10 +1,7 @@
 package com.ontotext.javacourse.collections.exceptionsmessagemanager;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,13 +14,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ExceptionsMessageManager {
-  private static String delimiter;
-  private final ArrayList<String> elementsToConcatenate;
+  private static final String DELIMITER = " | ";
+  private final List<String> elementsToConcatenate;
   private Map<String, String> map;
 
-  public ExceptionsMessageManager(Map<String, String> map, String delimiter) {
+  public ExceptionsMessageManager(Map<String, String> map) {
     elementsToConcatenate = new ArrayList<>();
-    ExceptionsMessageManager.delimiter = delimiter;
     setMap(map);
   }
 
@@ -38,7 +34,7 @@ public class ExceptionsMessageManager {
     if (messagesCombination.isEmpty()) {
       return new ArrayList<>();
     }
-    return Arrays.stream(messagesCombination.split(Pattern.quote(delimiter))).toList();
+    return Arrays.stream(messagesCombination.split(Pattern.quote(DELIMITER))).toList();
   }
 
   /**
@@ -48,11 +44,10 @@ public class ExceptionsMessageManager {
    * @param message the value of the message to add
    */
   public void addExceptionMessage(String message) {
-    if (map.containsValue(message)) {
-      elementsToConcatenate.add(message);
-    } else {
+    if (!map.containsValue(message)) {
       throw new InvalidParameterException("The value is not present in the map!");
     }
+    elementsToConcatenate.add(message);
   }
 
   /**
@@ -62,11 +57,10 @@ public class ExceptionsMessageManager {
    * @param messageCode the key of the message to add
    */
   public void addExceptionMessageUsingCode(String messageCode) {
-    if (map.containsKey(messageCode)) {
-      elementsToConcatenate.add(messageCode);
-    } else {
+    if (!map.containsKey(messageCode)) {
       throw new InvalidParameterException("The key is not present in the map!");
     }
+    elementsToConcatenate.add(messageCode);
   }
 
   /**
@@ -75,6 +69,6 @@ public class ExceptionsMessageManager {
    * @return the value of the generated string
    */
   public String getMessage() {
-    return String.join(delimiter, elementsToConcatenate);
+    return String.join(DELIMITER, elementsToConcatenate);
   }
 }

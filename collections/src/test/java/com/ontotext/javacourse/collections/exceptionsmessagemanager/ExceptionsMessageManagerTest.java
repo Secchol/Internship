@@ -19,7 +19,7 @@ class ExceptionsMessageManagerTest {
     map.put("Invalid debit card number", null);
     map.put("Wrong PIN", "Invalid zip code");
     map.put("Invalid argument", null);
-    exceptionsMessageManager = new ExceptionsMessageManager(map, " | ");
+    exceptionsMessageManager = new ExceptionsMessageManager(map);
   }
 
   @Test
