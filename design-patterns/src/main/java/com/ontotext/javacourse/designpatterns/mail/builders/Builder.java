@@ -3,7 +3,7 @@ package com.ontotext.javacourse.designpatterns.mail.builders;
 import com.ontotext.javacourse.designpatterns.mail.MissingFieldException;
 import lombok.NoArgsConstructor;
 
-/** Defines a mail builder */
+/** Defines a mail builder. */
 @NoArgsConstructor
 public abstract class Builder {
   protected Mail mail;
@@ -13,9 +13,9 @@ public abstract class Builder {
   }
 
   /**
-   * Builds the mail object. If the get field is empty MissingFieldException is thrown.
+   * Builds the mail object. If the from field is empty MissingFieldException is thrown.
    *
-   * @return returns the constructed mail object
+   * @return the constructed mail object
    */
   public Mail build() {
     if (mail.getFrom().isEmpty()) {

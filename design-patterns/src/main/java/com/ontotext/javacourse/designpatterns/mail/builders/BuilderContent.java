@@ -7,7 +7,7 @@ public class BuilderContent extends Builder {
   }
 
   /**
-   * Sets the mail content.
+   * Sets the mail content field.
    *
    * @param content the content of the mail
    * @return a BuilderCC object to set the cc of the mail
