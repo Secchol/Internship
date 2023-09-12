@@ -30,7 +30,6 @@ public class LineDrawer implements Drawer {
       if (currentX == robot.getStreet() && currentY == robot.getAvenue()) {
         robot.putBeeper();
       }
-
       if (2 * error > -distanceY) {
         error -= distanceY;
         currentX += directionX;
