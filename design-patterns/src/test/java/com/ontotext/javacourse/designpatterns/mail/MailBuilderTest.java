@@ -2,13 +2,14 @@ package com.ontotext.javacourse.designpatterns.mail;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.ontotext.javacourse.designpatterns.mail.builders.Mail;
 import org.junit.jupiter.api.Test;
 
 class MailBuilderTest {
 
   @Test
   void buildConstructsMailObject() {
-    MailBuilder builder = new MailBuilder();
+    Builder builder = new Builder();
     Mail mail =
         builder
             .from("me")
@@ -30,7 +31,7 @@ class MailBuilderTest {
 
   @Test
   void buildThrowsExceptionIfFromFieldIsMissing() {
-    MailBuilder builder = new MailBuilder();
+    Builder builder = new Builder();
     builder.to("nobody").subject("work").content("sdfs").cc("pp");
     assertThrows(MissingFieldException.class, builder::build);
   }

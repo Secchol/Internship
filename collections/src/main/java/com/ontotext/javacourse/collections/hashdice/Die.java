@@ -1,18 +1,16 @@
 package com.ontotext.javacourse.collections.hashdice;
 
 import java.util.Random;
+import lombok.Getter;
 
 /** The Die class defines a die with given sides. */
+@Getter
 public class Die {
   private final Random random = new Random();
   private int sides;
 
   public Die(int sides) {
     setSides(sides);
-  }
-
-  public int getSides() {
-    return this.sides;
   }
 
   public void setSides(int sides) {

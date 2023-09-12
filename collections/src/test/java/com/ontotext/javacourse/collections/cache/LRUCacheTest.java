@@ -46,7 +46,7 @@ class LRUCacheTest {
   }
 
   @Test
-  void putBringsElementToFrontIfItAlreadyContainsKey() {
+  void putBringsElementToFrontIfItAlreadyContainsKeyAndEvictsCorrectly() {
     cache.put(1, "bb");
     cache.put(4, "dd");
     cache.put(5, "ggg");
