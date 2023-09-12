@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 public class PaginatorModel<T> {
   private final int pageSize;
-  private final List<LinkedList<T>> list;
+  private final List<List<T>> list;
   private int currentPageIndex = -1;
 
   /**
@@ -99,13 +99,13 @@ public class PaginatorModel<T> {
   private void distributePages(List<T> items) {
     int currentIndex = 0;
     for (int i = 0; i < items.size() / pageSize; i++) {
-      LinkedList<T> page = new LinkedList<>();
+      List<T> page = new LinkedList<>();
       for (int j = 0; j < pageSize; j++, currentIndex++) {
         page.add(items.get(currentIndex));
       }
       list.add(page);
     }
-    LinkedList<T> remainingElements = new LinkedList<>();
+    List<T> remainingElements = new LinkedList<>();
     for (int i = currentIndex; i < items.size(); i++) {
       remainingElements.add(items.get(i));
     }

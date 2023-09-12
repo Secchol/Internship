@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.designpatterns.mail;
+package com.ontotext.javacourse.designpatterns.mail.builders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Mail {
   private String to;
   private String subject;
   private String content;
-  private List<String> cc = new ArrayList<>();
+  private String cc;
   private List<String> attachments = new ArrayList<>();
 
   protected Mail() {}

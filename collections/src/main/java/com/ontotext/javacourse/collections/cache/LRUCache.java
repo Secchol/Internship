@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * The LRUCache class defines an LRU cache that contains methods for adding and retrieving elements
- * from the cache.
+ * The LRU cache is a data structure with a set size that evicts the least recently used element
+ * when the size is reached.
  *
  * @param <K> the cache key
  * @param <V> the cache value
@@ -17,6 +17,12 @@ public class LRUCache<K, V> {
   private final int size;
   private final Map<K, V> cache;
 
+  /**
+   * Sets the size of the cache and overrides the removeEldestEntry method so that an element is
+   * evicted when the cache size is reached
+   *
+   * @param size the size of the cache
+   */
   public LRUCache(int size) {
     this.size = size;
     this.cache =
