@@ -7,10 +7,7 @@ public class Runner {
   public static void main(String args[]) {
 
     MailBuilder builder = new MailBuilder();
-    Mail mail =
-        builder
-            .from("")
-            .build();
+    Mail mail = builder.from("").to("sdfs").build();
     System.out.println(
         mail.getFrom()
             + mail.getTo()

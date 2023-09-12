@@ -7,7 +7,7 @@ public class MailBuilder extends Builder {
   }
 
   /**
-   * Sets the mail from.
+   * Sets the mail from field.
    *
    * @param from the sender of the mail
    * @return BuilderTo object to set the receiver of the mail

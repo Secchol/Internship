@@ -7,7 +7,7 @@ public class BuilderSubject extends Builder {
   }
 
   /**
-   * Sets the mail subject.
+   * Sets the mail subject field.
    *
    * @param subject the subject of the mail
    * @return a BuilderContent object to set the mail content

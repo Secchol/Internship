@@ -7,7 +7,7 @@ public class BuilderCC extends Builder {
   }
 
   /**
-   * Sets the mail cc.
+   * Sets the mail cc field.
    *
    * @param cc the cc of the mail
    * @return a BuilderAttachments object to set the mail attachments

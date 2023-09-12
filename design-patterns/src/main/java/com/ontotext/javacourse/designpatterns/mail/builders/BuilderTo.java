@@ -8,7 +8,7 @@ public class BuilderTo extends Builder {
   }
 
   /**
-   * Sets the mail to.
+   * Sets the mail to field.
    *
    * @param to the mail receiver
    * @return a BuilderSubject object to set the mail subject
