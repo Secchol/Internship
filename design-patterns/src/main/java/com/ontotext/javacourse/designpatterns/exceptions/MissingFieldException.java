@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.designpatterns.mail;
+package com.ontotext.javacourse.designpatterns.exceptions;
 
 /**
  * The MissingFieldException class defines an exception which is thrown when an object is missing a

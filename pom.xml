@@ -49,6 +49,11 @@
                 <artifactId>assertj-core</artifactId>
                 <version>3.24.2</version>
             </dependency>
+            <dependency>
+                <groupId>com.ontotext.graphdb</groupId>
+                <artifactId>graphdb-runtime</artifactId>
+                <version>10.3.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.designpatterns.mail.builders;
+package com.ontotext.javacourse.designpatterns.mail;
 
 /** Defines a mail builder which sets the mail content. */
 public class BuilderContent extends Builder {
@@ -12,8 +12,8 @@ public class BuilderContent extends Builder {
    * @param content the content of the mail
    * @return a BuilderCC object to set the cc of the mail
    */
-  public BuilderCC content(String content) {
+  public BuilderCc content(String content) {
     super.mail.setContent(content);
-    return new BuilderCC(super.mail);
+    return new BuilderCc(super.mail);
   }
 }

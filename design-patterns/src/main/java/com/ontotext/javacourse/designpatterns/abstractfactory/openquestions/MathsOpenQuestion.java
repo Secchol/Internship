@@ -6,4 +6,10 @@ public class MathsOpenQuestion implements OpenQuestion {
   public void writeAnswer(String answer) {
     System.out.println(answer);
   }
+
+  @Override
+  public void askQuestion() {
+    System.out.println("What are the roots of this quadratic equation?");
+    System.out.println("x²+3x-4 =0");
+  }
 }

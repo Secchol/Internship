@@ -1,8 +1,8 @@
-package com.ontotext.javacourse.designpatterns.mail.builders;
+package com.ontotext.javacourse.designpatterns.mail;
 
 /** Defines a mail builder which sets the mail cc. */
-public class BuilderCC extends Builder {
-  protected BuilderCC(Mail mail) {
+public class BuilderCc extends Builder {
+  protected BuilderCc(Mail mail) {
     super(mail);
   }
 

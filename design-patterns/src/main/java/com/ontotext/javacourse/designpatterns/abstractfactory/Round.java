@@ -1,6 +1,6 @@
 package com.ontotext.javacourse.designpatterns.abstractfactory;
 
-import com.ontotext.javacourse.designpatterns.abstractfactory.factories.QuestionFactory;
+import com.ontotext.javacourse.designpatterns.abstractfactory.factorymethodfactories.QuestionFactory;
 import com.ontotext.javacourse.designpatterns.abstractfactory.multiplechoicequestions.MultipleChoiceQuestion;
 import com.ontotext.javacourse.designpatterns.abstractfactory.openquestions.OpenQuestion;
 import lombok.AllArgsConstructor;
@@ -18,6 +18,6 @@ public class Round {
     MultipleChoiceQuestion multipleChoiceQuestion = factory.createMultipleChoiceQuestion();
     OpenQuestion openQuestion = factory.createOpenQuestion();
     multipleChoiceQuestion.askQuestion();
-    openQuestion.writeAnswer("invalid answer");
+    openQuestion.askQuestion();
   }
 }
