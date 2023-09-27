@@ -1,6 +1,6 @@
-package com.ontotext.javacourse.designpatterns.mail.builders;
+package com.ontotext.javacourse.designpatterns.mail;
 
-import com.ontotext.javacourse.designpatterns.mail.MissingFieldException;
+import com.ontotext.javacourse.designpatterns.exceptions.MissingFieldException;
 import lombok.NoArgsConstructor;
 
 /** Defines a mail builder. */

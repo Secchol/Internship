@@ -1,9 +1,9 @@
 package com.ontotext.javacourse.designpatterns.abstractfactory;
 
-import com.ontotext.javacourse.designpatterns.abstractfactory.factories.GeographyFactory;
-import com.ontotext.javacourse.designpatterns.abstractfactory.factories.HistoryFactory;
-import com.ontotext.javacourse.designpatterns.abstractfactory.factories.MathsFactory;
-import com.ontotext.javacourse.designpatterns.abstractfactory.factories.QuestionFactory;
+import com.ontotext.javacourse.designpatterns.abstractfactory.factorymethodfactories.GeographyFactory;
+import com.ontotext.javacourse.designpatterns.abstractfactory.factorymethodfactories.HistoryFactory;
+import com.ontotext.javacourse.designpatterns.abstractfactory.factorymethodfactories.MathsFactory;
+import com.ontotext.javacourse.designpatterns.abstractfactory.factorymethodfactories.QuestionFactory;
 import java.security.InvalidParameterException;
 import java.util.Random;
 
@@ -13,28 +13,25 @@ import java.util.Random;
  * Geography.
  */
 public class Game {
-  private static final Random random = new Random();
   private static final String[] questionTopics = new String[] {"History", "Maths", "Geography"};
 
   /** Selects a random topic and starts the round. */
   public void startRound() {
     String topic = pickRandomTopic();
-    QuestionFactory factory;
-    if (topic.equals("History")) {
-      factory = new HistoryFactory();
-    } else if (topic.equals("Maths")) {
-      factory = new MathsFactory();
-    } else if (topic.equals("Geography")) {
-      factory = new GeographyFactory();
-    } else {
-      throw new InvalidParameterException("Unknown topic!");
-    }
+    QuestionFactory factory =
+        switch (topic) {
+          case "History" -> new HistoryFactory();
+          case "Maths" -> new MathsFactory();
+          case "Geography" -> new GeographyFactory();
+          default -> throw new InvalidParameterException("Invalid topic!");
+        };
     Round round = new Round(factory);
     round.start();
   }
 
   private String pickRandomTopic() {
-    int randomNumber = random.nextInt(3);
+    Random random = new Random();
+    int randomNumber = random.nextInt(0, 3);
     return questionTopics[randomNumber];
   }
 }

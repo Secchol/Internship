@@ -6,4 +6,9 @@ public class GeographyOpenQuestion implements OpenQuestion {
   public void writeAnswer(String answer) {
     System.out.println(answer);
   }
+
+  @Override
+  public void askQuestion() {
+    System.out.println("What countries form the European union?");
+  }
 }

@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.designpatterns.abstractfactory.factories;
+package com.ontotext.javacourse.designpatterns.abstractfactory.factorymethodfactories;
 
 import com.ontotext.javacourse.designpatterns.abstractfactory.multiplechoicequestions.HistoryMultipleChoiceQuestion;
 import com.ontotext.javacourse.designpatterns.abstractfactory.multiplechoicequestions.MultipleChoiceQuestion;

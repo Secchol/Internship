@@ -1,4 +1,4 @@
-package com.ontotext.javacourse.designpatterns.mail.builders;
+package com.ontotext.javacourse.designpatterns.mail;
 
 /** Defines a mail builder which adds the mail attachments. */
 public class BuilderAttachments extends Builder {
