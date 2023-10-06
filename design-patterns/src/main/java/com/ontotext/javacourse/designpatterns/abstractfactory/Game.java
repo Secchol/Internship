@@ -13,7 +13,8 @@ import java.util.Random;
  * Geography.
  */
 public class Game {
-  private static final String[] questionTopics = new String[] {"History", "Maths", "Geography"};
+  private static final Random RANDOM = new Random();
+  private static final String[] QUESTIONTOPICS = new String[] {"History", "Maths", "Geography"};
 
   /** Selects a random topic and starts the round. */
   public void startRound() {
@@ -30,8 +31,7 @@ public class Game {
   }
 
   private String pickRandomTopic() {
-    Random random = new Random();
-    int randomNumber = random.nextInt(0, 3);
-    return questionTopics[randomNumber];
+    int randomNumber = RANDOM.nextInt(0, 3);
+    return QUESTIONTOPICS[randomNumber];
   }
 }

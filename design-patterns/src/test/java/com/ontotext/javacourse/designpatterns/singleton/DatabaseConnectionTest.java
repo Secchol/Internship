@@ -8,13 +8,17 @@ import org.junit.jupiter.api.Test;
 class DatabaseConnectionTest {
   @Test
   void getInstanceCreatesOnlyASingleInstanceOfTheClass() {
-    DatabaseConnection firstInvocation = DatabaseConnection.getInstance();
-    DatabaseConnection secondInvocation = DatabaseConnection.getInstance();
+    DatabaseConnection firstInvocation =
+        DatabaseConnection.getInstance("http://localhost:7200/", "myrepo");
+    DatabaseConnection secondInvocation =
+        DatabaseConnection.getInstance("http://localhost:7200/", "myrepo");
     assertEquals(firstInvocation, secondInvocation);
   }
 
   @Test
   void getConnectionReturnsRepositoryConnection() {
-    assertInstanceOf(RepositoryConnection.class, DatabaseConnection.getInstance().getConnection());
+    assertInstanceOf(
+        RepositoryConnection.class,
+        DatabaseConnection.getInstance("http://localhost:7200/", "myrepo").getConnection());
   }
 }
