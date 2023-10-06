@@ -50,11 +50,5 @@
             <artifactId>commons-validator</artifactId>
             <version>1.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.eclipse.rdf4j</groupId>
-            <artifactId>rdf4j-repository</artifactId>
-            <version>4.2.3</version> <!-- Use the latest version available -->
-        </dependency>
-
     </dependencies>
 </project>
