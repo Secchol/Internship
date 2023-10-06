@@ -10,10 +10,8 @@ import org.slf4j.LoggerFactory;
  */
 @NoArgsConstructor
 public class PaginatorView {
-
   private static final Logger LOGGER = LoggerFactory.getLogger(PaginatorView.class);
   private final Scanner scanner = new Scanner(System.in);
-
 
   /**
    * Displays the previously given command result.
