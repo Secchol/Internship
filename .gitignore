@@ -8,7 +8,10 @@
 *.nar
 hs_err_pid*
 replay_pid*
-.src/main/resources
+.classpath
+.project
+.settings/
+target/
 
 ##############################
 ## Maven
