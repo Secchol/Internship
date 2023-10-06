@@ -8,7 +8,7 @@
 *.nar
 hs_err_pid*
 replay_pid*
-.resources
+.src/main/resources
 
 ##############################
 ## Maven
