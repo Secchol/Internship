@@ -1,15 +1,12 @@
 package com.ontotext.javacourse.designpatterns.calculator.commands;
 
-import com.ontotext.javacourse.designpatterns.calculator.Calculator;
+import lombok.NoArgsConstructor;
 
-/** The SubtractCommand class is a command that executes the subtraction operation. */
-public class SubtractCommand extends BaseOperation {
-  public SubtractCommand(Calculator calculator, double operand) {
-    super(calculator, operand);
-  }
-
+/** The SubtractCommand class is a command that subtracts two given operands. */
+@NoArgsConstructor
+public class SubtractCommand implements Command {
   @Override
-  public void execute() {
-    super.getCalculator().subtract();
+  public Double execute(Double firstOperand, Double secondOperand) {
+    return firstOperand - secondOperand;
   }
 }

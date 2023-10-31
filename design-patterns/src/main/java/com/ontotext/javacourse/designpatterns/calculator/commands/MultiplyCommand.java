@@ -1,15 +1,12 @@
 package com.ontotext.javacourse.designpatterns.calculator.commands;
 
-import com.ontotext.javacourse.designpatterns.calculator.Calculator;
+import lombok.NoArgsConstructor;
 
-/** The MultiplyCommand class is a command that executes the multiplication operation. */
-public class MultiplyCommand extends BaseOperation {
-  public MultiplyCommand(Calculator calculator, double operand) {
-    super(calculator, operand);
-  }
-
+/** The MultiplyCommand class is a command that multiplies two given operands. */
+@NoArgsConstructor
+public class MultiplyCommand implements Command {
   @Override
-  public void execute() {
-    super.getCalculator().multiply();
+  public Double execute(Double firstOperand, Double secondOperand) {
+    return firstOperand * secondOperand;
   }
 }

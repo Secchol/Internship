@@ -1,2 +1,5 @@
-package com.ontotext.javacourse.threads;public class Test {
+package com.ontotext.javacourse.threads;
+
+public class Test {
+
 }

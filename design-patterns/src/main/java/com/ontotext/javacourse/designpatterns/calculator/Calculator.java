@@ -1,46 +1,53 @@
 package com.ontotext.javacourse.designpatterns.calculator;
 
-import lombok.NoArgsConstructor;
+import com.ontotext.javacourse.designpatterns.calculator.commands.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
 
 /**
- * Defines a calculator that can perform addition,subtraction,multiplication,division and
- * exponentiation and return the result.
+ * The Calculator class contains a method that takes a given reverse polish notation expression and
+ * returns its result.
  */
-@NoArgsConstructor
-public class Calculator {
-  private double result;
-  private double operand;
+public final class Calculator {
 
-  public void setOperand(double operand) {
-    this.operand = operand;
+  private Calculator() throws IllegalAccessException {
+    throw new IllegalAccessException("Calculator class is not meant to be instantiated!");
   }
 
-  public void add() {
-    result += operand;
-  }
-
-  public void subtract() {
-    result -= operand;
-  }
-
-  public void multiply() {
-    result *= operand;
-  }
-
-  /** Divides the result by the given operand if the divisor is not zero. */
-  public void divide() {
-    if (operand == 0) {
-      System.out.println("Division by zero!");
-    } else {
-      result /= operand;
+  /**
+   * Evaluates the given expression.
+   *
+   * @param reversePolishNotationExpression the reverse polish notation expression
+   * @return the result of the expression
+   */
+  public static double evaluateExpression(List<String> reversePolishNotationExpression) {
+    Deque<Double> stack = new ArrayDeque<>();
+    double firstOperand;
+    double secondOperand;
+    Double result;
+    for (String item : reversePolishNotationExpression) {
+      if (RPNEvaluator.isNumeric(item)) {
+        stack.push(Double.parseDouble(item));
+      } else {
+        secondOperand = stack.pop();
+        firstOperand = stack.pop();
+        Command command = getCommand(item);
+        result = command.execute(firstOperand, secondOperand);
+        stack.push(result);
+      }
     }
+    return stack.pop();
   }
 
-  public void exponentiate() {
-    result = Math.pow(result, operand);
-  }
-
-  public double getResult() {
-    return this.result;
+  private static Command getCommand(String action) {
+    return switch (action) {
+      case "+" -> new AddCommand();
+      case "-" -> new SubtractCommand();
+      case "*" -> new MultiplyCommand();
+      case "/" -> new DivisionCommand();
+      case "^" -> new ExponentiateCommand();
+      default -> throw new IllegalArgumentException("Action is invalid!");
+    };
   }
 }

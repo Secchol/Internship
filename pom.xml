@@ -25,6 +25,7 @@
         <module>input-output</module>
         <module>collections</module>
         <module>design-patterns</module>
+        <module>threads</module>
     </modules>
     <dependencyManagement>
         <dependencies>

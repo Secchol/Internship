@@ -1,17 +1,12 @@
 package com.ontotext.javacourse.designpatterns.calculator.commands;
 
-import com.ontotext.javacourse.designpatterns.calculator.Calculator;
+import lombok.NoArgsConstructor;
 
-/**
- * The ExponentiateCommand class is a command that raises the current result to a given exponent.
- */
-public class ExponentiateCommand extends BaseOperation {
-  public ExponentiateCommand(Calculator calculator, double operand) {
-    super(calculator, operand);
-  }
-
+/** The ExponentiateCommand class is a command that exponentiates two given operands. */
+@NoArgsConstructor
+public class ExponentiateCommand implements Command {
   @Override
-  public void execute() {
-    super.getCalculator().exponentiate();
+  public Double execute(Double firstOperand, Double secondOperand) {
+    return Math.pow(firstOperand, secondOperand);
   }
 }

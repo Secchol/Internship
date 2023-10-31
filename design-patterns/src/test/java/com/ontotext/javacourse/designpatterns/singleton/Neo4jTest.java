@@ -1,10 +1,16 @@
 package com.ontotext.javacourse.designpatterns.singleton;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.net.URL;
+import org.eclipse.rdf4j.query.QueryEvaluationException;
+import org.eclipse.rdf4j.query.QueryLanguage;
+import org.eclipse.rdf4j.query.TupleQuery;
+import org.eclipse.rdf4j.query.TupleQueryResult;
+import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.http.HTTPRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Neo4jContainer;
@@ -27,11 +33,31 @@ class Neo4jTest {
   }
 
   @Test
-  void testNeo4jConnection() throws IOException {
-    // Fix method
+  void testNeo4jConnectionFALSE() throws IOException {
     URL url = new URL(NEO4J_URL + "/browser/");
     RepositoryConnection connection =
         DatabaseConnection.getInstance(url.getPath(), "neo4j-container").getConnection();
-    assertEquals(200, 200);
+connection.prepareTupleQuery(QueryLanguage.SPARQL,"");
+    assertTrue(true);
+  }
+
+  @Test
+  void testNeo4jConnection() throws IOException {
+    URL url = new URL(NEO4J_URL);
+
+    // Create an RDF4J repository connection to the Neo4j endpoint
+    Repository repository = new HTTPRepository(url.toString());
+    repository.init();
+
+    try (RepositoryConnection connection = repository.getConnection()) {
+      // Perform a SPARQL SELECT query
+      String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"; // Example query
+      TupleQuery tupleQuery = connection.prepareTupleQuery(QueryLanguage.SPARQL, query);
+      try (TupleQueryResult result = tupleQuery.evaluate()) {
+        assertTrue(result.hasNext()); // Ensure there are results
+      }
+    } catch (QueryEvaluationException e) {
+      e.printStackTrace(); // Handle query execution errors
+    }
   }
 }

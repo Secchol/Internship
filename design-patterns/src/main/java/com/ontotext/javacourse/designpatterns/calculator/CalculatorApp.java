@@ -1,50 +1,28 @@
 package com.ontotext.javacourse.designpatterns.calculator;
 
-import com.ontotext.javacourse.designpatterns.calculator.commands.*;
-import java.security.InvalidParameterException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 /**
- * The CalculatorApp class contains a method that starts the calculator and begins to accept
- * operation and executes them.
+ * The CalculatorApp class contains a method that starts the calculator and accepts an expression as
+ * input.
  */
 public class CalculatorApp {
-  private final CalculatorView calculatorView;
-  private final Calculator calculator;
-  private final CalculatorInvoker calculatorInvoker;
+  private final Scanner scanner;
 
-  public CalculatorApp(Calculator calculator) {
-    calculatorView = new CalculatorView();
-    this.calculator = calculator;
-    calculatorInvoker = new CalculatorInvoker();
+  public CalculatorApp() {
+    scanner = new Scanner(System.in);
   }
 
   /** Starts accepting user input from the console. */
   public void startCalculator() {
-    calculatorView.displayAvailableCommands();
-    double startingNumber = calculatorView.promptNumberInput();
-    calculatorInvoker.setCommand(new AddCommand(this.calculator, startingNumber));
-    calculatorInvoker.executeCommand();
-    int operationNumber = calculatorView.promptOperationNumber();
-    double operand = 0;
-    while (operationNumber != 6) {
-      operand = calculatorView.promptNumberInput();
-      Command command = getOperationCommand(operationNumber, operand);
-      calculatorInvoker.setCommand(command);
-      calculatorInvoker.executeCommand();
-      calculatorView.displayCurrentResult(calculator.getResult());
-      operationNumber = calculatorView.promptOperationNumber();
-    }
-    calculatorView.displayEndResult(calculator.getResult());
-  }
-
-  private Command getOperationCommand(int operationNumber, double operand) {
-    return switch (operationNumber) {
-      case 1 -> new AddCommand(this.calculator, operand);
-      case 2 -> new SubtractCommand(this.calculator, operand);
-      case 3 -> new MultiplyCommand(this.calculator, operand);
-      case 4 -> new DivisionCommand(this.calculator, operand);
-      case 5 -> new ExponentiateCommand(this.calculator, operand);
-      default -> throw new InvalidParameterException("Invalid operand number!");
-    };
+    System.out.println("Enter an expression with a space between each number and symbol:");
+    String input = scanner.nextLine();
+    List<String> expression = Arrays.stream(input.split(" ")).toList();
+    List<String> reversePolishNotationExpression =
+        RPNEvaluator.getReversePolishNotation(expression);
+    double result = Calculator.evaluateExpression(reversePolishNotationExpression);
+    System.out.printf("Result: %.2f%n", result);
   }
 }

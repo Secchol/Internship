@@ -1,16 +1,13 @@
 package com.ontotext.javacourse.designpatterns.calculator.commands;
 
-import com.ontotext.javacourse.designpatterns.calculator.Calculator;
+import lombok.NoArgsConstructor;
 
-/** The AddCommand class is a command that executes the addition operation. */
-public class AddCommand extends BaseOperation {
-
-  public AddCommand(Calculator calculator, double operand) {
-    super(calculator, operand);
-  }
+/** The AddCommand class is a command that adds two given operands. */
+@NoArgsConstructor
+public class AddCommand implements Command {
 
   @Override
-  public void execute() {
-    super.getCalculator().add();
+  public Double execute(Double firstOperand, Double secondOperand) {
+    return firstOperand + secondOperand;
   }
 }
