@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class CalculatorAppTest {
   private CalculatorApp calculatorApp;
-  private ByteArrayInputStream inputStream;
   private ByteArrayOutputStream outputStream;
 
   @Test
@@ -21,7 +20,7 @@ class CalculatorAppTest {
   }
 
   private void setUp(String inputString) {
-    inputStream = new ByteArrayInputStream(inputString.getBytes());
+    ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
     outputStream = new ByteArrayOutputStream();
     System.setIn(inputStream);
     System.setOut(new PrintStream(outputStream));

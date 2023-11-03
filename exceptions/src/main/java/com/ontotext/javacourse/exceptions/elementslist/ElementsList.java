@@ -9,7 +9,6 @@ import com.ontotext.javacourse.exceptions.elementslist.exceptions.ListIsFullExce
  * representation of the elements.
  */
 public class ElementsList {
-
   private final Object[] elements;
   private int count;
 
