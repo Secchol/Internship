@@ -1,9 +1,10 @@
 package com.ontotext.javacourse.threads.producerconsumer;
 
-import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 
 class ProducerRunnableTest {
@@ -22,11 +23,10 @@ class ProducerRunnableTest {
   void producerAddsProductsToWarehouse() {
     setUp(10);
     producer.start();
-    try {
-      sleep(1000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    Awaitility.await()
+        .atMost(5, TimeUnit.SECONDS)
+        .pollInterval(100, TimeUnit.MILLISECONDS)
+        .until(() -> warehouse.getProducts().size() == 3);
     assertEquals(3, warehouse.getProducts().size());
   }
 
@@ -34,11 +34,10 @@ class ProducerRunnableTest {
   void producerAddsProductsToWarehouseInGivenDelay() {
     setUp(10);
     producer.start();
-    try {
-      sleep(150);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    Awaitility.await()
+        .atMost(150, TimeUnit.MILLISECONDS)
+        .pollInterval(50, TimeUnit.MILLISECONDS)
+        .until(() -> warehouse.getProducts().size() == 2);
     assertEquals(2, warehouse.getProducts().size());
   }
 
@@ -48,12 +47,15 @@ class ProducerRunnableTest {
     TraderRunnable traderRunnable = new TraderRunnable("John", warehouse, 1, 100);
     Thread trader = new Thread(traderRunnable);
     producer.start();
-    try {
-      sleep(400);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    Awaitility.await()
+        .atMost(200, TimeUnit.MILLISECONDS)
+        .pollInterval(10, TimeUnit.MILLISECONDS)
+        .until(() -> warehouse.getProducts().size() == 2);
     trader.start();
+    Awaitility.await()
+        .atMost(200, TimeUnit.MILLISECONDS)
+        .pollInterval(10, TimeUnit.MILLISECONDS)
+        .until(() -> warehouse.getProducts().size() == 2);
     assertEquals(2, warehouse.getProducts().size());
   }
 }

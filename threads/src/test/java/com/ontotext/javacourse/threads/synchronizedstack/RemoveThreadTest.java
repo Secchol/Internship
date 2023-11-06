@@ -1,52 +1,52 @@
 package com.ontotext.javacourse.threads.synchronizedstack;
 
-import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
+import java.util.concurrent.TimeUnit;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 
 class RemoveThreadTest {
   private SynchronizedElementsList elementsList;
+  private Thread removeThread;
 
-  @BeforeEach
-  void setUp() {
+  void setUp(int elementsToRemove) {
     elementsList = new SynchronizedElementsList(5);
+    RemoveRunnable removeRunnable = new RemoveRunnable(elementsList, elementsToRemove);
+    removeThread = new Thread(removeRunnable);
   }
 
   @Test
   void removeThreadRemovesElementsFromList() {
+    setUp(4);
     for (int i = 0; i < 5; i++) {
       elementsList.add(i);
     }
-    RemoveThread removeThread = new RemoveThread(elementsList, 4);
     removeThread.start();
-    try {
-      sleep(10);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    Awaitility.await()
+        .atMost(20, TimeUnit.MILLISECONDS)
+        .pollInterval(5, TimeUnit.MILLISECONDS)
+        .until(() -> elementsList.getCount() == 1);
     assertEquals(1, elementsList.getCount());
   }
 
   @Test
   void removeThreadWaitsForElementToBeAddedIfListIsEmpty() {
+    setUp(3);
     elementsList.add(1);
-    RemoveThread removeThread = new RemoveThread(elementsList, 3);
     removeThread.start();
-    try {
-      sleep(10);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
-    AddThread addThread = new AddThread(List.of(3, 4, 5), elementsList);
+    Awaitility.await()
+        .atMost(20, TimeUnit.MILLISECONDS)
+        .pollInterval(5, TimeUnit.MILLISECONDS)
+        .until(() -> elementsList.getCount() == 0);
+    AddRunnable addRunnable = new AddRunnable(List.of(3, 4, 5), elementsList);
+    Thread addThread = new Thread(addRunnable);
     addThread.start();
-    try {
-      sleep(10);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    Awaitility.await()
+        .atMost(20, TimeUnit.MILLISECONDS)
+        .pollInterval(5, TimeUnit.MILLISECONDS)
+        .until(() -> elementsList.getCount() == 1);
     assertEquals(1, elementsList.getCount());
   }
 }

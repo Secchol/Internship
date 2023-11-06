@@ -3,9 +3,11 @@ package com.ontotext.javacourse.threads.synchronizedstack;
 import java.util.Collection;
 import lombok.AllArgsConstructor;
 
-/** AddThread class defines a thread that adds a given element to elementsList when executed. */
+/**
+ * AddRunnable class defines a runnable that adds a list of elements to elementsList when executed.
+ */
 @AllArgsConstructor
-public class AddThread extends Thread {
+public class AddRunnable implements Runnable {
   private final Collection<Object> elementsToAdd;
   private final SynchronizedElementsList elementsList;
 

@@ -3,6 +3,8 @@ package com.ontotext.javacourse.threads.timeouthashtable;
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.concurrent.TimeUnit;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +28,7 @@ class TimeoutHashtableTest {
   void putReplacesOldValueIfKeyExists() {
     hashtable.put("a", 2);
     hashtable.put("a", 3);
-    assertEquals(hashtable.get("a"), 3);
+    assertEquals(3, hashtable.get("a"));
   }
 
   @Test
@@ -62,45 +64,31 @@ class TimeoutHashtableTest {
   void keyIsRemovedWhenNotAccessed() {
     hashtable.put("a", 3);
     hashtable.put("b", 4);
-    try {
-      sleep(200);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    Awaitility.await()
+        .atMost(200, TimeUnit.MILLISECONDS)
+        .pollInterval(100, TimeUnit.MILLISECONDS)
+        .until(() -> hashtable.getHashtable().size() == 0);
     assertEquals(0, hashtable.getHashtable().size());
   }
 
   @Test
-  void keyIsNotRemovedIfReaccessedByPut() {
+  void keyIsNotRemovedIfReaccessedByPut() throws InterruptedException {
     hashtable.put("a", 3);
-    try {
-      sleep(60);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    sleep(60);
     hashtable.put("a", 4);
-    try {
-      sleep(60);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    Awaitility.await()
+        .atMost(500, TimeUnit.MILLISECONDS)
+        .pollInterval(50, TimeUnit.MILLISECONDS)
+        .until(() -> hashtable.getHashtable().size() == 1);
     assertEquals(1, hashtable.getHashtable().size());
   }
 
   @Test
-  void keyIsNotRemovedIfReaccessedByGet() {
+  void keyIsNotRemovedIfReaccessedByGet() throws InterruptedException {
     hashtable.put("a", 3);
-    try {
-      sleep(60);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    sleep(60);
     hashtable.get("a");
-    try {
-      sleep(60);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    sleep(60);
     assertEquals(1, hashtable.getHashtable().size());
   }
 }

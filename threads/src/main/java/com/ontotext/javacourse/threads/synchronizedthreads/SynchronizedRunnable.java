@@ -1,6 +1,9 @@
 package com.ontotext.javacourse.threads.synchronizedthreads;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The SynchronizedRunnable class defines a runnable that counts once and stops, so it allows the
@@ -8,21 +11,18 @@ import lombok.AllArgsConstructor;
  */
 @AllArgsConstructor
 public class SynchronizedRunnable implements Runnable {
+  private static final Logger LOGGER = LoggerFactory.getLogger(SynchronizedRunnable.class);
+  private static final AtomicBoolean SHOULD_RUN = new AtomicBoolean(false);
   private final int count;
-  private final Object lock;
 
   @Override
   public void run() {
-    synchronized (lock) {
-      for (int i = 1; i <= count; i++) {
-        System.out.printf("%s count: %d%n", Thread.currentThread().getName(), i);
-        try {
-          lock.notify();
-          lock.wait();
-        } catch (InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-      }
+    int currentCount = 1;
+    while (currentCount <= count) {
+      while (!SHOULD_RUN.compareAndSet(false, true)) {}
+      LOGGER.info("{} count : {}", Thread.currentThread().getName(), currentCount++);
+      SHOULD_RUN.set(false);
     }
+    LOGGER.info("{} finished execution", Thread.currentThread().getName());
   }
 }

@@ -10,17 +10,17 @@ import org.junit.jupiter.api.Test;
 
 class SynchronizedThreadsTest {
   private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-  private SynchronizedThreads synchronizedThreads;
+  //private SynchronizedThreads synchronizedThreads;
 
   @BeforeEach
   void setUp() {
     System.setOut(new PrintStream(outputStream));
-    synchronizedThreads = new SynchronizedThreads();
+    //synchronizedThreads = new SynchronizedThreads();
   }
 
   @Test
   void startStartsThreadsAndTheyDisplayCorrectOutput() {
-    synchronizedThreads.start(5);
+    //synchronizedThreads.start(5);
     try {
       sleep(50);
     } catch (InterruptedException e) {

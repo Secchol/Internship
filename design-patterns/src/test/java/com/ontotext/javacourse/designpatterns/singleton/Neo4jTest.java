@@ -36,11 +36,15 @@ class Neo4jTest {
 
   @Test
   void testNeo4jConnectionFALSE() throws IOException {
-    URL url = new URL(NEO4J_URL + "/browser/");
+    URL url = new URL(NEO4J_URL);
     RepositoryConnection connection =
-        DatabaseConnection.getInstance(url.getPath(), "neo4j-container").getConnection();
+        DatabaseConnection.getInstance(url.getPath(), "magical_mayer").getConnection();
     connection.prepareTupleQuery(QueryLanguage.SPARQL, "");
-    assertTrue(true);
+
+    String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10";
+    TupleQuery tupleQuery = connection.prepareTupleQuery(QueryLanguage.SPARQL, query);
+    TupleQueryResult result = tupleQuery.evaluate();
+    assertTrue(result.hasNext());
   }
 
   @Test
@@ -61,9 +65,10 @@ class Neo4jTest {
       e.printStackTrace();
     }
   }
+
   @Test
   void testNeo4jConnectionn() throws IOException {
-    URL url = new URL(NEO4J_URL+"/browser/");
+    URL url = new URL(NEO4J_URL + "/browser/");
 
     Repository repository = new HTTPRepository(url.toString());
     repository.init();
