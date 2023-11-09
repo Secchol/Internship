@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The InterruptRunnable class defines a runnable that counts to a given count and when it reaches
- * that count it stops the other thread's execution and then finishes its own.
+ * that count it stops the other thread's execution and finishes its own.
  */
 @AllArgsConstructor
 public class InterruptRunnable implements Runnable {
